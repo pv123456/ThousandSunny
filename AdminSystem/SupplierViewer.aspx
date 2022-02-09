@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Supplier Management - ConfirmDelete.aspx.cs" Inherits="_1_ConfirmDelete" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SupplierViewer.aspx.cs" Inherits="_1Viewer" %>
 
 <!DOCTYPE html>
 
