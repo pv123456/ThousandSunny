@@ -2,5 +2,6 @@
 {
     public class clsStock
     {
+        public string StockID { get; set; }
     }
 }
