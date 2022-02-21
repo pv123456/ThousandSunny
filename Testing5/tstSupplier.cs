@@ -15,5 +15,82 @@ namespace Testing5
             //Will see the class i made exist or not
                 Assert.IsNotNull(AnSupplier);
         }
+
+        [TestMethod]
+
+        public void SupplierDiscountPricePropertyOk()
+        {
+            //Creates an instance
+            clsSupplier AnSupplier = new clsSupplier();
+            //Create some test data to assign some property
+            Boolean TestData = true;
+            // assign data to the property
+            AnSupplier.SupplierDiscountPrice = TestData;
+            // test to see if value match
+            Assert.AreEqual(AnSupplier.SupplierDiscountPrice, TestData);
+        }
+
+        [TestMethod]
+        public void StartDateSupplierPropertyOK()
+        {
+            //Create a supplier instance
+            clsSupplier AnSupplier = new clsSupplier();
+            //Create test data to assign property 
+            DateTime TestData = DateTime.Now.Date;
+            //Assign data to propery
+            AnSupplier.StartDateSupplier = TestData;
+            //Test to see if value will match
+            Assert.AreEqual(AnSupplier.StartDateSupplier , TestData);
+        }
+
+        [TestMethod]
+        public void SupplierIdPropertyOk()
+        {
+            //Create a supplier instance
+            clsSupplier AnSupplier = new clsSupplier();
+            //Create test data to assign property
+            int TestData = 1;
+            //Assign data to property 
+            AnSupplier.SupplierId = TestData;
+            //Test to see if value will match
+            Assert.AreEqual(AnSupplier.SupplierId, TestData);
+        }
+
+        [TestMethod]
+        public void SupplierNamePropertyOk()
+        {
+            //Create a supplier instance
+            clsSupplier AnSupplier = new clsSupplier();
+            //Create test data to assign property
+            String TestData = "Genshin";
+            //Assign data to property
+            AnSupplier.SupplierName = TestData;
+            //Test to see if value match
+            Assert.AreEqual(AnSupplier.SupplierName, TestData);
+        }
+        [TestMethod]
+        public void SupplierEmailPropertyOk()
+        {
+            //Create a supplier instance
+            clsSupplier AnSupplier = new clsSupplier();
+            //Create test data to assign property
+            String TestData = "Genshin@outlook.com";
+            //Assign data to property
+            AnSupplier.SupplierEmail = TestData;
+            //Test to see if value match
+            Assert.AreEqual(AnSupplier.SupplierEmail, TestData);
+        }
+        [TestMethod]
+        public void SupplierAddressPropertyOk()
+        {
+            //Create a supplier instance
+            clsSupplier AnSupplier = new clsSupplier();
+            //Create Test data to assign property
+            String TestData = "28 Eastgate, Lincoln LN2 4AA";
+            //Assign data to property
+            AnSupplier.SupplierAddress = TestData;
+            //Test to see if value match
+            Assert.AreEqual(AnSupplier.SupplierAddress, TestData);
+        }
     }
 }
