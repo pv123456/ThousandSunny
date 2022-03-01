@@ -15,12 +15,12 @@ public partial class _1Viewer : System.Web.UI.Page
         //get the data from the session object
         AnSupplier = (clsSupplier)Session["AnSupplier"];
         //Dispay the supplier Name
-        Response.Write(AnSupplier.SupplierId);
-        Response.Write("<br>" + AnSupplier.SupplierName);
-        Response.Write("<br>" + AnSupplier.SupplierEmail);
-        Response.Write("<br>" + AnSupplier.SupplierAddress);
-        Response.Write("<br>" + AnSupplier.StartDateSupplier);
-        Response.Write("<br>" + AnSupplier.SupplierDiscountPrice);
+        Response.Write("Supplier ID : "+AnSupplier.SupplierId + "<br />");
+        Response.Write("Supplier Name : " + AnSupplier.SupplierName + "<br />");
+        Response.Write("Supplier Email : " + AnSupplier.SupplierEmail + "<br />");
+        Response.Write("Supplier Address : " + AnSupplier.SupplierAddress + "<br />");
+        Response.Write("Supplier Start Date : " + AnSupplier.StartDateSupplier + "<br />");
+        Response.Write("Discount : " + AnSupplier.SupplierDiscountPrice + "<br />");
 
     }
 }
