@@ -15,7 +15,7 @@ public partial class _1Viewer : System.Web.UI.Page
         //get the data from the session object
         AnSupplier = (clsSupplier)Session["AnSupplier"];
         //Dispay the supplier Name
-        Response.Write("Supplier ID : "+AnSupplier.SupplierId + "<br />");
+        Response.Write("Supplier ID : "+AnSupplier.SupplierID + "<br />");
         Response.Write("Supplier Name : " + AnSupplier.SupplierName + "<br />");
         Response.Write("Supplier Email : " + AnSupplier.SupplierEmail + "<br />");
         Response.Write("Supplier Address : " + AnSupplier.SupplierAddress + "<br />");
