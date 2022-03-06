@@ -5,7 +5,7 @@ namespace ClassLibrary
     public class clsSupplier
     {
         //private data member for the address  no property
-        private Int32 mSupplierId;
+        private Int32 mSupplierID;
         private DateTime mStartDateSupplier;
         private String mSupplierName;
         private String mSupplierEmail;
@@ -35,16 +35,16 @@ namespace ClassLibrary
                 mStartDateSupplier = value;
             } 
         }
-        public Int32 SupplierId {
+        public Int32 SupplierID {
             get 
             {
                 //  send supplier data out
-                return mSupplierId;
+                return mSupplierID;
             } 
             set 
             {
                 // allows data into supplier 
-                mSupplierId = value;
+                mSupplierID = value;
             } 
         }
         public string SupplierName { get 
@@ -83,16 +83,30 @@ namespace ClassLibrary
             } 
         }
 
-        public bool Find(int supplierID)
+        public bool Find(int SupplierID)
         {
-            //always return true
-            mSupplierId = 2;
-            mStartDateSupplier = Convert.ToDateTime("15/08/2008");
-            mSupplierName = "Genshin";
-            mSupplierEmail = "Genshin@outlook.com";
-            mSupplierAddress = "28 Eastgate,Lincoln LN2 4AA";
-            mSupplierDiscountPrice = true;
-            return true;
+            //make an instance of data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for supplier ID to search
+            DB.AddParameter("@SupplierID", SupplierID);
+            //exacture stored procedure
+            DB.Execute("sproc_tblSupplierID_FilterBySupplierID");
+            //if there one match or no match 
+            if (DB.Count == 1)
+            {
+                mSupplierID = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierID"]);
+                mSupplierName = Convert.ToString(DB.DataTable.Rows[0]["SupplierName"]);
+                mSupplierEmail = Convert.ToString(DB.DataTable.Rows[0]["SupplierEmail"]);
+                mSupplierAddress = Convert.ToString(DB.DataTable.Rows[0]["SupplierAddress"]);
+                mStartDateSupplier = Convert.ToDateTime(DB.DataTable.Rows[0]["StartDateSupplier"]);
+                mSupplierDiscountPrice = Convert.ToBoolean(DB.DataTable.Rows[0]["SupplierDiscountPrice"]);
+                //return true if everything worked
+                return true;
+            }
+            else 
+            {
+            return false;
+            }
         }
     }
 }

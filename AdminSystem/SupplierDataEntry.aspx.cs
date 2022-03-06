@@ -18,7 +18,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create an instance 
         clsSupplier AnSupplier = new clsSupplier();
         //capture a supplier
-        AnSupplier.SupplierId = Convert.ToInt32(txtSupplierID.Text);
+        AnSupplier.SupplierID = Convert.ToInt32(txtSupplierID.Text);
         AnSupplier.SupplierName = txtSupplierName.Text;
         AnSupplier.SupplierEmail = txtSupplierEmail.Text;
         AnSupplier.SupplierAddress = txtSupplierAddress.Text;

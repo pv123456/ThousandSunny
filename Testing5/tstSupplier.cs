@@ -51,9 +51,9 @@ namespace Testing5
             //Create test data to assign property
             int TestData = 1;
             //Assign data to property 
-            AnSupplier.SupplierId = TestData;
+            AnSupplier.SupplierID = TestData;
             //Test to see if value will match
-            Assert.AreEqual(AnSupplier.SupplierId, TestData);
+            Assert.AreEqual(AnSupplier.SupplierID, TestData);
         }
 
         [TestMethod]
@@ -101,9 +101,9 @@ namespace Testing5
             //variable to store the result of the validation
             Boolean Found = false;
             //test data
-            Int32 SupplierId = 1;
+            Int32 SupplierID =2;
             //invoke find method     
-            Found = AnSupplier.Find(SupplierId);
+            Found = AnSupplier.Find(SupplierID);
             //see if the test is true
             Assert.IsTrue(Found);
         }
@@ -120,7 +120,7 @@ namespace Testing5
             //invoke find method
             Found = AnSupplier.Find(SupplierId);
             //check the supplier id 
-            if (AnSupplier.SupplierId != 2)
+            if (AnSupplier.SupplierID != 2)
             {
                 OK = false;
             }
@@ -136,9 +136,9 @@ namespace Testing5
             Boolean Found = false;
             Boolean OK = true;
             //test data
-            Int32 SupplierId = 2;
+            Int32 SupplierID = 2;
             //invoke find method
-            Found = AnSupplier.Find(SupplierId);
+            Found = AnSupplier.Find(SupplierID);
             //check start date of supplier matches
             if (AnSupplier.StartDateSupplier != Convert.ToDateTime("15/08/2008"))
             {
@@ -156,9 +156,9 @@ namespace Testing5
             Boolean Found = false;
             Boolean OK = true;
             //test data
-            Int32 SupplierId = 2;
+            Int32 SupplierID = 2;
             //invoke find method
-            Found = AnSupplier.Find(SupplierId);
+            Found = AnSupplier.Find(SupplierID);
             //check start date of supplier matches
             if (AnSupplier.SupplierDiscountPrice != true)
             {
@@ -177,9 +177,9 @@ namespace Testing5
             Boolean Found = false;
             Boolean OK = true;
             //test data
-            Int32 SupplierId = 2;
+            Int32 SupplierID = 2;
             //invoke find method
-            Found = AnSupplier.Find(SupplierId);
+            Found = AnSupplier.Find(SupplierID);
             //check start date of supplier matches
             if (AnSupplier.SupplierName != "Genshin")
             {
@@ -198,9 +198,9 @@ namespace Testing5
             Boolean Found = false;
             Boolean OK = true;
             //test data
-            Int32 SupplierId = 2;
+            Int32 SupplierID = 2;
             //invoke find method
-            Found = AnSupplier.Find(SupplierId);
+            Found = AnSupplier.Find(SupplierID);
             //check start date of supplier matches
             if (AnSupplier.SupplierEmail != "Genshin@outlook.com")
             {
@@ -218,11 +218,11 @@ namespace Testing5
             Boolean Found = false;
             Boolean OK = true;
             //test data
-            Int32 SupplierId = 2;
+            Int32 SupplierID = 2;
             //invoke find method
-            Found = AnSupplier.Find(SupplierId);
+            Found = AnSupplier.Find(SupplierID);
             //check start date of supplier matches
-            if (AnSupplier.SupplierAddress != "28 Eastgate,Lincoln LN2 4AA")
+            if (AnSupplier.SupplierAddress != "28 Eastgate, Lincoln LN2 4AA")
             {
                 OK = false;
             }
