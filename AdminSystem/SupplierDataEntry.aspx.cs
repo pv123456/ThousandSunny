@@ -30,4 +30,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //Goes to the viewer page
         Response.Redirect("SupplierViewer.aspx");
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        clsSupplier AnSupplier = new clsSupplier();
+        
+        Int32 SupplierID;
+        Boolean Found = false;
+
+        SupplierID = Convert.ToInt32(txtSupplierID.Text);
+        Found = AnSupplier.Find(SupplierID);
+
+        if (Found == true) 
+        {
+            txtSupplierName.Text = AnSupplier.SupplierName;
+            txtSupplierEmail.Text = AnSupplier.SupplierEmail;
+            txtSupplierAddress.Text = AnSupplier.SupplierAddress;
+            txtStartDateSupplier.Text = AnSupplier.StartDateSupplier.ToString();
+            chkSupplierDiscountPrice.Checked = AnSupplier.SupplierDiscountPrice;
+
+        }
+    }
 }
