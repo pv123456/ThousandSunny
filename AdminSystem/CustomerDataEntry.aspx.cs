@@ -34,7 +34,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         ACustomer.CustDOB = Convert.ToDateTime(txtCustDOB.Text);
 
         //Stores the customer in the session object
-        Session["ACustomer"] = ACustomer
+        Session["ACustomer"] = ACustomer;
         //Goes back to the Customer viewer page
         Response.Redirect("CustomerViewer.aspx");
     }
