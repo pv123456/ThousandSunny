@@ -10,17 +10,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
         clsStock AnStock = new clsStock();
-        AnStock.StockID = txtStockID.Text;
+        AnStock.StockID = Convert.ToInt32(txtStockID.Text);
         Session["AnStock"] = AnStock;
         //navigate to the Stock page
         Response.Redirect("StockViewer.aspx");
-
     }
 
 }

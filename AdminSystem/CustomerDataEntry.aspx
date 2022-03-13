@@ -8,6 +8,9 @@
 </head>
 <body style="height: 791px; width: 2106px">
     <form id="form1" runat="server" aria-busy="False">
+        <asp:Label ID="lblCustId" runat="server" Text="ID:" width="81px"></asp:Label>
+&nbsp;<asp:TextBox ID="txtCustId" runat="server"></asp:TextBox>
+        <br />
         <asp:Label ID="lblCustUsername" runat="server" Text="Username:" width="81px"></asp:Label>
 &nbsp;<asp:TextBox ID="txtCustUsername" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
         <br />
