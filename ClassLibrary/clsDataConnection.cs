@@ -25,6 +25,7 @@ public class clsDataConnection
     DataTable dataTable = new DataTable();
     //string variable used to store the connection string
     private string connectionString;
+    private SqlCommand sprocName;
 
     public clsDataConnection()
     {
@@ -149,7 +150,7 @@ public class clsDataConnection
         SQLParams.Add(AParam);
     }
 
-    public Int32 Execute(string SProcName)
+    public Int32 Execute(string sprocName)
     {
         ///public method used to execute the named stored procedure
         ///accepts one parameter which is the name of the stored procedure to use
@@ -159,7 +160,7 @@ public class clsDataConnection
         //open the database
         connectionToDB.Open();
         //initialise the command builder for this connection
-        SqlCommand dataCommand = new SqlCommand(SProcName, connectionToDB);
+        SqlCommand dataCommand = new SqlCommand(sprocName, connectionToDB);
         //add the parameters to the command builder
         //loop through each parameter
         for (int Counter = 0; Counter < SQLParams.Count; Counter += 1)
@@ -176,7 +177,7 @@ public class clsDataConnection
         //set the command type as stored procedure
         dataCommand.CommandType = CommandType.StoredProcedure;
         //initialise the data adapter
-        dataChannel = new SqlDataAdapter(SProcName, connectionToDB);
+        dataChannel = new SqlDataAdapter(sprocName, connectionToDB);
         //set the select command property for the data adapter
         dataChannel.SelectCommand = dataCommand;
         //use the copmmand builder to generate the sql insert delete etc
