@@ -22,8 +22,8 @@
         </div>
         <asp:CheckBox ID="chkStockAvaliability" runat="server" style="z-index: 1; left: 66px; top: 342px; position: absolute" Text="StockAvaliability" />
         <asp:Label ID="IblError" runat="server" style="z-index: 1; left: 63px; top: 409px; position: absolute"></asp:Label>
-        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 104px; top: 448px; position: absolute; right: 1065px" Text="OK" />
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 203px; position: absolute; top: 449px" Text="Cancel" />
+        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 112px; top: 450px; position: absolute; height: 23px; width: 57px;" Text="OK" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 202px; position: absolute; top: 449px; width: 61px;" Text="Cancel" />
     </form>
 </body>
 </html>
