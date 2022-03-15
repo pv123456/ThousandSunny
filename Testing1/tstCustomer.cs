@@ -74,5 +74,95 @@ namespace Testing1
             Assert.AreEqual(ACustomer.Over18, TestData);
         }
 
+        [TestMethod]
+        public void TestCustIdFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 CustId = 21;
+            Found = ACustomer.Find(CustId);
+            if (ACustomer.CustId != 21)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestCustUsernameFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 CustId = 21;
+            Found = ACustomer.Find(CustId);
+            if (ACustomer.CustUsername != "TestName")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestCustPasswordFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 CustId = 21;
+            Found = ACustomer.Find(CustId);
+            if (ACustomer.CustPassword != "TestTest")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestCustEmailFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 CustId = 21;
+            Found = ACustomer.Find(CustId);
+            if (ACustomer.CustEmail != "test@gmail.com")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestCustDOBFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 CustId = 21;
+            Found = ACustomer.Find(CustId);
+            if (ACustomer.CustDOB != Convert.ToDateTime("16/09/2015"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestOver18Found()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 CustId = 21;
+            Found = ACustomer.Find(CustId);
+            if (ACustomer.Over18 != false)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
     }
 }
