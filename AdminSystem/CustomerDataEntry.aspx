@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CustomerDataEntry.aspx.cs" Inherits="_1_DataEntry" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CustomerDataEntry.aspx.cs" Inherits="_1_DataEntry" %>
 
 <!DOCTYPE html>
 
@@ -9,8 +9,8 @@
 <body style="height: 791px; width: 2106px">
     <form id="form1" runat="server" aria-busy="False">
         <asp:Label ID="lblCustId" runat="server" Text="Customer ID:"></asp:Label>
-&nbsp;<asp:TextBox ID="txtCustId" runat="server"></asp:TextBox>
-&nbsp;<asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
+        &nbsp;<asp:TextBox ID="txtCustId" runat="server"></asp:TextBox>
+        &nbsp;<asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
         <br />
         <asp:Label ID="lblCustUsername" runat="server" Text="Username:" width="82px"></asp:Label>
 &nbsp;<asp:TextBox ID="txtCustUsername" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>

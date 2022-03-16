@@ -66,7 +66,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void Over18()
+        public void Over18OK()
         {
             clsCustomer ACustomer = new clsCustomer();
             Boolean TestData = true;
@@ -74,6 +74,16 @@ namespace Testing1
             Assert.AreEqual(ACustomer.Over18, TestData);
         }
 
+        
+        public void FindMethodOK()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Int32 CustId = 21;
+            Found = ACustomer.Find(CustId);
+            Assert.IsTrue(Found);
+        }
+      
         [TestMethod]
         public void TestCustIdFound()
         {
@@ -151,7 +161,6 @@ namespace Testing1
 
         [TestMethod]
         public void TestOver18Found()
-        {
             clsCustomer ACustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;

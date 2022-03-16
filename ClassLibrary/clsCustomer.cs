@@ -8,10 +8,12 @@ namespace ClassLibrary
         {
             get
             {
-                return mCustId;
-            }
-            set
+=======
+        public Int32 CustId
+        {
+            get
             {
+                //sends data out of property
                 mCustId = value;
             }
         }
@@ -94,8 +96,20 @@ namespace ClassLibrary
             { 
                 return false;
             }
+                //allows data into property
+                mCustId = value;
+            }
+        }
+        public string CustUsername { get; set; }
+        public string CustPassword { get; set; }
+        public string CustEmail { get; set; }
+        public DateTime CustDOB { get; set; }
+        public bool Over18 { get; set; }
+
+        public bool Find(int custId)
+        {
+            mCustId = 21;
+            return true;
         }
     }
-
-
 }

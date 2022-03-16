@@ -28,17 +28,18 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //Create a new instance of the clsCustomer
         clsCustomer ACustomer = new clsCustomer();
         //Captures the values
+        ACustomer.CustId = Convert.ToInt32(txtCustId.Text);
         ACustomer.CustUsername = txtCustUsername.Text;
         ACustomer.CustPassword = txtCustPassword.Text;
         ACustomer.CustEmail = txtCustEmail.Text;
         ACustomer.CustDOB = Convert.ToDateTime(txtCustDOB.Text);
+        ACustomer.Over18 = chkOver18.Checked;
 
         //Stores the customer in the session object
         Session["ACustomer"] = ACustomer;
         //Goes back to the Customer viewer page
         Response.Redirect("CustomerViewer.aspx");
     }
-
     protected void btnFind_Click(object sender, EventArgs e)
     {
         clsCustomer ACustomer = new clsCustomer();
