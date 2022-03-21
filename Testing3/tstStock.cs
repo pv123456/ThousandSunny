@@ -7,6 +7,10 @@ namespace Testing3
     [TestClass]
     public class tstStock
     {
+       
+
+
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -44,7 +48,7 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void StockIDPropertyOK() 
+        public void StockIDPropertyOK()
         {
             //create an instance of the class we want to create 
             clsStock AnStock = new clsStock();
@@ -240,3 +244,12 @@ namespace Testing3
 
     }
 }
+       
+        
+
+
+
+
+
+    
+
