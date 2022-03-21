@@ -121,23 +121,23 @@ namespace ClassLibrary
             }
             if (supplierName.Length > 50) 
             {
-                Error = Error + "The Supplier Name must be less than 50:";
+                Error = Error + "<br>" + "The Supplier Name must be less than 50";
             }
             if (supplierEmail.Length == 0) 
             {
-                Error = Error + "The Supplier Email may not be blank";
+                Error = Error + "<br>" + "The Supplier Email may not be blank";
             }
             if (supplierEmail.Length > 50) 
             {
-                Error = Error + "The Supplier Email must be less than 50:";
+                Error = Error + "<br>" + "The Supplier Email must be less than 50";
             }
             if (supplierAddress.Length == 0) 
             {
-                Error = Error + "The Supplier Address may not be blank";
+                Error = Error + "<br>" + "The Supplier Address may not be blank";
             }
             if (supplierAddress.Length > 50)
             {
-                Error = Error + "The Supplier Address must be less than 50:";
+                Error = Error + "<br>" + "The Supplier Address must be less than 50";
             }
 
             try
@@ -145,16 +145,16 @@ namespace ClassLibrary
                 DateTemp = Convert.ToDateTime(startDateSupplier);
                 if (DateTemp < DateTime.Now.Date)
                 {
-                    Error = Error + "The date cannot be in the past";
+                    Error = Error + "<br>" + "The date cannot be in the past";
                 }
                 if (DateTemp > DateTime.Now.Date)
                 {
-                    Error = Error + "The date cannot be in the future";
+                    Error = Error + "<br>" + "The date cannot be in the future";
                 }
             }
             catch 
             {
-                    Error = Error + "The date was not valid date:";
+                    Error = Error + "<br>" + "The date was not valid date";
             }
 
             return Error;
