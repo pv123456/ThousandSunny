@@ -17,18 +17,35 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create an instance 
         clsSupplier AnSupplier = new clsSupplier();
-        //capture a supplier
-        AnSupplier.SupplierID = Convert.ToInt32(txtSupplierID.Text);
-        AnSupplier.SupplierName = txtSupplierName.Text;
-        AnSupplier.SupplierEmail = txtSupplierEmail.Text;
-        AnSupplier.SupplierAddress = txtSupplierAddress.Text;
-        AnSupplier.StartDateSupplier = Convert.ToDateTime(txtStartDateSupplier.Text);
-        AnSupplier.SupplierDiscountPrice = chkSupplierDiscountPrice.Checked;
         
-        //store Supplier Name in the session object
-        Session["AnSupplier"] = AnSupplier;
-        //Goes to the viewer page
-        Response.Redirect("SupplierViewer.aspx");
+        
+        //capture a supplier
+        
+        string SupplierName = txtSupplierName.Text;
+        string SupplierEmail = txtSupplierEmail.Text;
+        string SupplierAddress = txtSupplierAddress.Text;
+        string StartDateSupplier = txtStartDateSupplier.Text;
+        
+         string Error = "";
+        Error = AnSupplier.Valid(SupplierName, SupplierEmail, SupplierAddress, StartDateSupplier);
+        if (Error == "")
+        {
+            //capture a supplier
+            AnSupplier.SupplierName = SupplierName;
+            AnSupplier.SupplierEmail = SupplierEmail;
+            AnSupplier.SupplierAddress = SupplierAddress;
+            AnSupplier.StartDateSupplier = Convert.ToDateTime(StartDateSupplier);
+            //store Supplier Name in the session object
+            Session["AnSupplier"] = AnSupplier;
+            //Goes to the viewer page
+            Response.Write("SupplierViewer.aspx");
+
+        }
+        else 
+        {
+            lblError.Text = Error;
+        }
+        
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
