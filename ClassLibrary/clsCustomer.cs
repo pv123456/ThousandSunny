@@ -4,14 +4,13 @@ namespace ClassLibrary
     public class clsCustomer
     {
         private Int32 mCustId;
-        public int CustId
-        {
-            get
-            {
-=======
         public Int32 CustId
         {
             get
+            {
+                return mCustId;
+            }
+            set
             {
                 //sends data out of property
                 mCustId = value;
