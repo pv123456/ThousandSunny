@@ -140,8 +140,62 @@ namespace ClassLibrary
             }
         }
 
+        public string Valid(string StockName, string StockLastAdded, string StockDescription)
+        {
+            string Error = "";
+
+            DateTime DateTemp;
+
+            if (StockName.Length == 0)
+            {
+                Error = Error + "The stock name may not be blank : ";
+            }
+            if (StockName.Length > 30)
+            {
+                Error = Error + "The Stock Name should be less then 30 charcters : ";
+            }
+            try
+            {
+
+                DateTemp = Convert.ToDateTime(StockLastAdded);
+
+                if (DateTemp < DateTime.Now.Date)
+                {
+
+                    Error = Error + "The date cannot be in the past : ";
+                }
+
+                if (DateTemp > DateTime.Now.Date)
+
+                {
+
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+
+
+            catch
+
+            {
+
+                Error = Error + "The date was not a valid date : ";
+            }
+
+            if (StockDescription.Length == 0)
+            {
+
+                Error = Error + " The description may not be blank : ";
+            }
+
+            if (StockDescription.Length > 50)
+            {
+                Error = Error + " The stock description must be less then 50 charcters : ";
+
+            }
+            return Error;
         }
     }
+}
 
     
 
