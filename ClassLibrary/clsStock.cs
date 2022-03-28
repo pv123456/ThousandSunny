@@ -194,6 +194,11 @@ namespace ClassLibrary
             }
             return Error;
         }
+
+        public static implicit operator clsStock(int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
