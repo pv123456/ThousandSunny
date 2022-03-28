@@ -8,7 +8,7 @@ namespace ClassLibrary
       
 
         List<clsSupplier> mSupplierList = new List<clsSupplier>();
-
+        clsSupplier mThisSupplier = new clsSupplier();
         public List<clsSupplier> SupplierList
         {
             
@@ -36,7 +36,20 @@ namespace ClassLibrary
             
             }
         }
-        public clsSupplier ThisSupplier { get; set; }
+        public clsSupplier ThisSupplier
+        {
+            get
+            {
+                //return the data
+                return mThisSupplier;
+            }
+
+            set
+            {
+                // set the data
+                mThisSupplier = value;
+            }
+        }
 
         public clsSupplierCollection() 
         {
@@ -70,7 +83,19 @@ namespace ClassLibrary
 
 
         }
-            
- 
+
+        public int Add()
+        {
+            //create an db connection instance 
+            clsDataConnection DB = new clsDataConnection();
+            //set attributes
+            DB.AddParameter("@SupplierName", mThisSupplier.SupplierName);
+            DB.AddParameter("@SupplierEmail", mThisSupplier.SupplierEmail);
+            DB.AddParameter("@SupplierAddress", mThisSupplier.SupplierAddress);
+            DB.AddParameter("@StartDateSupplier", mThisSupplier.StartDateSupplier);
+            DB.AddParameter("@SupplierDiscountPrice", mThisSupplier.SupplierDiscountPrice);
+            //exacute the stored procedure
+            return DB.Execute("sproc_tblSupplier_Insert");
+        }
     }
 }
