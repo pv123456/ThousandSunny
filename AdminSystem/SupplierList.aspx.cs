@@ -28,11 +28,35 @@ public partial class _1_List : System.Web.UI.Page
 
     }
 
-    protected void Button1_Click(object sender, EventArgs e)
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        //variable to store primary Key
+        Int32 SupplierID;
+
+        //by chance a record has been selected
+
+        if (lstSupplierList.SelectedIndex != -1)
+        {
+            //get primary key value of the record to edit
+            SupplierID = Convert.ToInt32(lstSupplierList.SelectedValue);
+            //store the data into a session
+            Session["SupplierID"] = SupplierID;
+            //redirect to edit
+            Response.Redirect("SupplierDataEntry.aspx");
+        }
+        else 
+        {
+            lblError.Text = "Please select a record to edit from the list";
+        }
+    }
+
+
+    protected void btnAdd_Click(object sender, EventArgs e)
     {
         Session["SupplierID"] = -1;
 
         //direct to data entry
-        Response.Redirect("SupplierDataEntry");
+        Response.Redirect("SupplierDataEntry.aspx");
     }
 }

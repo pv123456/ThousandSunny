@@ -8,8 +8,31 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 SupplierID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (IsPostBack == false) 
+        {
+            if (SupplierID != -1) 
+            {
+                DisplaySupplier();
+            }
+        }
+    }
+
+    private void DisplaySupplier()
+    {
+        //create an instance of supplier list
+        clsSupplierCollection Supplier = new clsSupplierCollection();
+        //find the recond to update
+        Supplier.ThisSupplier.Find(SupplierID);
+        //display data for this record
+        txtSupplierID.Text = Supplier.ThisSupplier.SupplierID.ToString();
+        txtSupplierName.Text = Supplier.ThisSupplier.SupplierName;
+        txtSupplierEmail.Text = Supplier.ThisSupplier.SupplierEmail;
+        txtSupplierAddress.Text = Supplier.ThisSupplier.SupplierAddress;
+        txtStartDateSupplier.Text = Supplier.ThisSupplier.StartDateSupplier.ToString();
+        chkSupplierDiscountPrice.Checked = Supplier.ThisSupplier.SupplierDiscountPrice;
 
     }
 
@@ -27,6 +50,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
         {
             //capture a supplier
+            AnSupplier.SupplierID = SupplierID;
             AnSupplier.SupplierName = SupplierName;
             AnSupplier.SupplierEmail = SupplierEmail;
             AnSupplier.SupplierAddress = SupplierAddress;
@@ -35,14 +59,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
             //create an instacle of supplier collection 
             clsSupplierCollection SupplierList = new clsSupplierCollection();
-            //set attribute
-            SupplierList.ThisSupplier = AnSupplier;
+            if (SupplierID == -1)
+            {
+                //set attribute
+                SupplierList.ThisSupplier = AnSupplier;
 
-            //Add the data
-            SupplierList.Add();
-
+                //Add the data
+                SupplierList.Add();
+            }
+            else 
+            {
+                    //find record
+                SupplierList.ThisSupplier.Find(SupplierID);
+                //set this supplier 
+                SupplierList.ThisSupplier = AnSupplier;
+                //Update record
+                SupplierList.Add();
+            }
             //Goes to the viewer page
-            Response.Write("SupplierViewer.aspx");
+            Response.Redirect("SupplierList.aspx");
 
         }
         else 

@@ -120,5 +120,52 @@ namespace Testing5
             Assert.AreEqual(AllSupplier.ThisSupplier, TestData);
 
         }
+
+        [TestMethod]
+        public void UpdateMethodOk() 
+        {
+            // make an instance of collection
+            clsSupplierCollection AllSupplier = new clsSupplierCollection();
+            
+            //test data
+           
+            //create test supplier data
+            clsSupplier TestData = new clsSupplier();
+            
+            //variable to stroe primary key
+            Int32 PrimaryKey = 0;
+
+            //Setting attributes 
+            TestData.SupplierName = "Genshin";
+            TestData.SupplierEmail = "Genshin@outlook.com";
+            TestData.SupplierAddress = "28 Eastgate, Lincoln LN2 4AA";
+            TestData.StartDateSupplier = DateTime.Now.Date;
+            TestData.SupplierDiscountPrice = true;
+
+            //set this address to test data
+            AllSupplier.ThisSupplier = TestData;
+            //add record
+            PrimaryKey = AllSupplier.Add();
+            //set the primarky key of data
+            TestData.SupplierID = PrimaryKey;
+
+            //modifying test Data
+            TestData.SupplierName = "Genshins";
+            TestData.SupplierEmail = "Genshins@outlook.com";
+            TestData.SupplierAddress = "29 Eastgate, Lincoln LN2 4AA";
+            TestData.StartDateSupplier = DateTime.Now.Date;
+            TestData.SupplierDiscountPrice = false;
+
+            AllSupplier.ThisSupplier = TestData;
+
+            //update record
+            AllSupplier.Update();
+
+            //Find Recond
+            AllSupplier.ThisSupplier.Find(PrimaryKey);
+
+            //See if result matches
+            Assert.AreEqual(AllSupplier.ThisSupplier, TestData);
+        }
     }
 }
