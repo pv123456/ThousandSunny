@@ -27,4 +27,12 @@ public partial class _1_List : System.Web.UI.Page
         lstSupplierList.DataBind();
 
     }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Session["SupplierID"] = -1;
+
+        //direct to data entry
+        Response.Redirect("SupplierDataEntry");
+    }
 }

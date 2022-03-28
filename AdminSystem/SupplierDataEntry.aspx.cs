@@ -16,16 +16,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOk_Click(object sender, EventArgs e)
     {
         //create an instance 
-        clsSupplier AnSupplier = new clsSupplier();
-        
-        
+        clsSupplier AnSupplier = new clsSupplier();  
         //capture a supplier
-        
         string SupplierName = txtSupplierName.Text;
         string SupplierEmail = txtSupplierEmail.Text;
         string SupplierAddress = txtSupplierAddress.Text;
         string StartDateSupplier = txtStartDateSupplier.Text;
-        
          string Error = "";
         Error = AnSupplier.Valid(SupplierName, SupplierEmail, SupplierAddress, StartDateSupplier);
         if (Error == "")
@@ -35,8 +31,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnSupplier.SupplierEmail = SupplierEmail;
             AnSupplier.SupplierAddress = SupplierAddress;
             AnSupplier.StartDateSupplier = Convert.ToDateTime(StartDateSupplier);
-            //store Supplier Name in the session object
-            Session["AnSupplier"] = AnSupplier;
+            AnSupplier.SupplierDiscountPrice = chkSupplierDiscountPrice.Checked;
+
+            //create an instacle of supplier collection 
+            clsSupplierCollection SupplierList = new clsSupplierCollection();
+            //set attribute
+            SupplierList.ThisSupplier = AnSupplier;
+
+            //Add the data
+            SupplierList.Add();
+
             //Goes to the viewer page
             Response.Write("SupplierViewer.aspx");
 
