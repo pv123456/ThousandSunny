@@ -59,4 +59,63 @@ public partial class _1_List : System.Web.UI.Page
         //direct to data entry
         Response.Redirect("SupplierDataEntry.aspx");
     }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //variable for primary key
+        Int32 SupplierID;
+
+        //if record is selected from list
+        if (lstSupplierList.SelectedIndex != -1)
+        {
+            //get primary key value 
+            SupplierID = Convert.ToInt32(lstSupplierList.SelectedValue);
+            //store data in session
+            Session["SupplierID"] = SupplierID;
+            //redirect to delete page
+            Response.Redirect("SupplierConfirmDelete");
+        }
+        else 
+        {
+            lblError.Text = "Please select a record to delete";
+        }
+    }
+
+
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        //create an instace of supplier collection
+        clsSupplierCollection Supplier = new clsSupplierCollection();
+
+        Supplier.ReportByAddress(txtFilterAddress.Text);
+        lstSupplierList.DataSource = Supplier.SupplierList;
+
+        //set primarky key 
+        lstSupplierList.DataValueField = "SupplierID";
+        //set the name of the field to display
+        lstSupplierList.DataTextField = "SupplierAddress";
+        //bind data to list of data
+        lstSupplierList.DataBind();
+
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        //create an list of supplier collection 
+        clsSupplierCollection Supplier = new clsSupplierCollection();
+        Supplier.ReportByAddress("");
+        //clear an existing data written 
+        txtFilterAddress.Text = "";
+        lstSupplierList.DataSource = Supplier.SupplierList;
+
+
+        //set primarky key 
+        lstSupplierList.DataValueField = "SupplierID";
+        //set the name of the field to display
+        lstSupplierList.DataTextField = "SupplierAddress";
+        //bind data to list of data
+        lstSupplierList.DataBind();
+
+    }
 }

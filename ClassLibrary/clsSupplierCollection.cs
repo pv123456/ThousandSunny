@@ -53,34 +53,11 @@ namespace ClassLibrary
 
         public clsSupplierCollection() 
         {
-            //var for index
-            Int32 index = 0;
-            //var to stor record count
-            Int32 RecordCount = 0;
-            //instance to create data connection
             clsDataConnection DB = new clsDataConnection();
-            //carry out stored procedure 
+            //exacute stored procedure 
             DB.Execute("sproc_tblSupplier_SelectAll");
-            //get the count record
-            RecordCount = DB.Count;
-            //while in process 
-            while (index < RecordCount) 
-            {
-                //create supplier instance 
-                clsSupplier AnSupplier = new clsSupplier();
-                //read field current record
-                AnSupplier.SupplierID = Convert.ToInt32(DB.DataTable.Rows[index]["SupplierID"]);
-                AnSupplier.SupplierName = Convert.ToString(DB.DataTable.Rows[index]["SupplierName"]);
-                AnSupplier.SupplierEmail = Convert.ToString(DB.DataTable.Rows[index]["SupplierEmail"]);
-                AnSupplier.SupplierAddress = Convert.ToString(DB.DataTable.Rows[index]["SupplierAddress"]);
-                AnSupplier.StartDateSupplier = Convert.ToDateTime(DB.DataTable.Rows[index]["StartDateSupplier"]);
-                AnSupplier.SupplierDiscountPrice = Convert.ToBoolean(DB.DataTable.Rows[index]["SupplierDiscountPrice"]);
-                //add data to list 
-                mSupplierList.Add(AnSupplier);
-                //increment to next 
-                index++;
-            }
-
+            //populate the array 
+            PopulateArray(DB);
 
         }
 
@@ -113,6 +90,57 @@ namespace ClassLibrary
 
             //execute
             DB.Execute("sproc_tblSupplier_Update");
+        }
+
+        public void Delete()
+        {
+            //instance of data connection
+            clsDataConnection DB = new clsDataConnection();
+            //set parameter for stored procedure
+            DB.AddParameter("@SupplierID", mThisSupplier.SupplierID);
+            //excute storeed procedure
+            DB.Execute("sproc_tblSupplier_Delete");
+        }
+
+        
+
+        public void ReportByAddress(string SupplierAddress)
+        {
+            //filter reciird by full address or partial address
+            //connect database
+            clsDataConnection DB = new clsDataConnection();
+            //send address parameter to database
+            DB.AddParameter("@SupplierAddress", SupplierAddress);
+            //Exacute stored procedure
+            DB.Execute("sproc_tblSupplier_FilterByAddress");
+            //populate the array list data table
+            PopulateArray(DB);
+        }
+        void PopulateArray(clsDataConnection DB) 
+        {
+            //variable store index
+            Int32 Index = 0;
+            //variable to store record count
+            Int32 RecordCount;
+            //get count record 
+            RecordCount = DB.Count;
+            //clear private array list 
+            mSupplierList = new List<clsSupplier>();
+
+            while (Index < RecordCount) 
+            {
+                clsSupplier AnSupplier = new clsSupplier();
+                //read field from record
+                AnSupplier.SupplierID = Convert.ToInt32(DB.DataTable.Rows[Index]["SupplierID"]);
+                AnSupplier.SupplierName = Convert.ToString(DB.DataTable.Rows[Index]["SupplierName"]);
+                AnSupplier.SupplierEmail = Convert.ToString(DB.DataTable.Rows[Index]["SupplierEmail"]);
+                AnSupplier.SupplierAddress = Convert.ToString(DB.DataTable.Rows[Index]["SupplierAddress"]);
+                AnSupplier.StartDateSupplier = Convert.ToDateTime(DB.DataTable.Rows[Index]["StartDateSupplier"]);
+                AnSupplier.SupplierDiscountPrice = Convert.ToBoolean(DB.DataTable.Rows[Index]["SupplierDiscountPrice"]);
+                mSupplierList.Add(AnSupplier);
+
+                Index++;
+            }
         }
     }
 }
