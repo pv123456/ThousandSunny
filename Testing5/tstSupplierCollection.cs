@@ -167,5 +167,77 @@ namespace Testing5
             //See if result matches
             Assert.AreEqual(AllSupplier.ThisSupplier, TestData);
         }
+
+        [TestMethod]
+        public void DeleteMethodOk()   
+        {
+            //create an instance of Supplier List
+            clsSupplierCollection AllSupplier = new clsSupplierCollection();
+            //create the test data
+            clsSupplier TestData = new clsSupplier();
+
+            //store primary key
+            Int32 PrimaryKey = 0;
+
+            //set attributes
+            TestData.SupplierID = 2;
+            TestData.SupplierName = "Genshin";
+            TestData.SupplierEmail = "Genshin@outlook.com";
+            TestData.SupplierAddress = "28 Eastgate, Lincoln LN2 4AA";
+            TestData.StartDateSupplier = DateTime.Now.Date;
+            TestData.SupplierDiscountPrice = true;
+            //set this supplier to test data
+            AllSupplier.ThisSupplier = TestData;
+            //add record
+            PrimaryKey = AllSupplier.Add();
+            //set primary ket to test data
+            TestData.SupplierID = PrimaryKey;
+            //find record
+            AllSupplier.ThisSupplier.Find(PrimaryKey);
+            //delete record
+            AllSupplier.Delete();
+
+            Boolean Found = AllSupplier.ThisSupplier.Find(PrimaryKey);
+            //test to see if record was not found
+            Assert.IsFalse(Found);
+
+        }
+        [TestMethod]
+        public void ReportByAddressMethodOk() 
+        {
+            //create an instance of the class contatining 
+            clsSupplierCollection SupplierList = new clsSupplierCollection();
+            //create instance  of the filter data
+            clsSupplierCollection FilteredSupplier = new clsSupplierCollection();
+            //apply a blank string (aim is to return all records)
+            FilteredSupplier.ReportByAddress("");
+            //test to see that value matches
+            Assert.AreEqual(SupplierList.Count, FilteredSupplier.Count);
+        }
+        [TestMethod]
+        public void ReportByAddressByNoneFound() 
+        {
+            //create an instance of supplier collection
+            clsSupplierCollection FilteredSupplierList = new clsSupplierCollection();
+            Boolean OK = true;
+            //apply a randome asupplier addresss
+            FilteredSupplierList.ReportByAddress("21 York Pl, Edinburgh EH1 3EN");
+            if (FilteredSupplierList.Count == 2)
+            {
+                if (FilteredSupplierList.SupplierList[0].SupplierID != 3)
+                {
+                    OK = false;
+                }
+                if (FilteredSupplierList.SupplierList[1].SupplierID != 92)
+                {
+                    OK = false;
+                }
+            }
+            else 
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
     }
 }
