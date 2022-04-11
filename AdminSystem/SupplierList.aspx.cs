@@ -73,7 +73,7 @@ public partial class _1_List : System.Web.UI.Page
             //store data in session
             Session["SupplierID"] = SupplierID;
             //redirect to delete page
-            Response.Redirect("SupplierConfirmDelete");
+            Response.Redirect("SupplierConfirmDelete.aspx");
         }
         else 
         {
