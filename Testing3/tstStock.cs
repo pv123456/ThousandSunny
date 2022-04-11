@@ -9,8 +9,9 @@ namespace Testing3
     {
         //good test data
         string StockName = "Avengers";
-        string StockLastAdded = DateTime.Now.Date.ToString();
         string StockDescription = "All the Avengers cast";
+        string StockLastAdded = DateTime.Now.Date.ToString();
+
 
         [TestMethod]
         public void InstanceOK()
@@ -80,7 +81,7 @@ namespace Testing3
             //create an instance of the class we want to create 
             clsStock AnStock = new clsStock();
             //create some test data to assign to the property 
-            string TestData = "SpiderMan";
+            string TestData = "coffee";
             //assign the data to the property 
             AnStock.StockName = TestData;
             //test to see that the two values are the same 
@@ -93,7 +94,7 @@ namespace Testing3
             //create an instance of the class we want to create 
             clsStock AnStock = new clsStock();
             //create some test data to assign to the property 
-            string TestData = " Poster of all spidermen together";
+            string TestData = " Poster of coffee";
             //assign the data to the property 
             AnStock.StockDescription = TestData;
             //test to see that the two values are the same 
@@ -108,7 +109,7 @@ namespace Testing3
             //boolean variable to store the result of the validation
             Boolean Found = false;
             //create some test data to use with the method 
-            Int32 StockID = 11;
+            Int32 StockID = 4;
             //invoke the method 
             Found = AnStock.Find(StockID);
             //test to see that the result is correct 
@@ -125,11 +126,11 @@ namespace Testing3
             //boolean  variable to record if data is OK 
             Boolean OK = true;
             //create some test data to use with the method 
-            Int32 StockID = 11;
+            Int32 StockID = 4;
             //invoke the method 
             Found = AnStock.Find(StockID);
             //check the stock id
-            if (AnStock.StockID != 11)
+            if (AnStock.StockID != 4)
             {
                 OK = false;
             }
@@ -256,6 +257,18 @@ namespace Testing3
             Assert.AreEqual(Error, "");
         }
 
+        public void StockNameMinlessOne()
+        {
+            //create instance
+            clsStock AnStock = new clsStock();
+            //string variable to store error message 
+            string Error = "";
+
+            string StockName = "";
+            Error = AnStock.Valid(StockName, StockLastAdded, StockDescription);
+            Assert.AreNotEqual(Error, "");
+        }
+
         [TestMethod]
         public void StockNameMin()
         {
@@ -281,7 +294,10 @@ namespace Testing3
         {
             clsStock AnStock = new clsStock();
             string Error = "";
-            string StockName = "aaaaa";
+
+            string StockName = "";
+            StockName = StockName.PadRight(29, 'a');
+
             Error = AnStock.Valid(StockName, StockLastAdded, StockDescription);
             Assert.AreEqual(Error, "");
         }
@@ -291,7 +307,10 @@ namespace Testing3
         {
             clsStock AnStock = new clsStock();
             string Error = "";
-            string StockName = "aaaaaa";
+
+            string StockName = "";
+            StockName = StockName.PadRight(30, 'a');
+
             Error = AnStock.Valid(StockName, StockLastAdded, StockDescription);
             Assert.AreEqual(Error, "");
         }
@@ -300,21 +319,31 @@ namespace Testing3
         public void StockNameMid()
         {
             clsStock AnStock = new clsStock();
+
             string Error = "";
+
             string StockName = "aaa";
+
             Error = AnStock.Valid(StockName, StockLastAdded, StockDescription);
+
             Assert.AreEqual(Error, "");
         }
 
 
         [TestMethod]
         public void StockNameExtremeMax()
+
         {
             clsStock AnStock = new clsStock();
+
             string Error = "";
+
             string StockName = "";
-            StockName = StockName.PadRight(500, 'a');
+
+            StockName = StockName.PadRight(200, 'a');
+
             Error = AnStock.Valid(StockName, StockLastAdded, StockDescription);
+
             Assert.AreNotEqual(Error, "");
 
         }
@@ -323,12 +352,19 @@ namespace Testing3
         public void StockLastAddedExtremeMin()
         {
             clsStock AnStock = new clsStock();
+
             string Error = "";
+
             DateTime TestDate;
+
             TestDate = DateTime.Now.Date;
+
             TestDate = TestDate.AddYears(-100);
+
             string StockLastAdded = TestDate.ToString();
+
             Error = AnStock.Valid(StockName, StockLastAdded, StockDescription);
+
             Assert.AreNotEqual(Error, "");
         }
 
@@ -336,12 +372,19 @@ namespace Testing3
         public void StockLastAddedMinLessOne()
         {
             clsStock AnStock = new clsStock();
+
             string Error = "";
+
             DateTime TestDate;
+
             TestDate = DateTime.Now.Date;
+
             TestDate = TestDate.AddDays(-1);
+
             string StockLastAdded = TestDate.ToString();
+
             Error = AnStock.Valid(StockName, StockLastAdded, StockDescription);
+
             Assert.AreNotEqual(Error, "");
         }
 
@@ -350,11 +393,17 @@ namespace Testing3
         public void StockLastAddedMin()
         {
             clsStock AnStock = new clsStock();
+
             string Error = "";
+
             DateTime TestDate;
+
             TestDate = DateTime.Now.Date;
+
             string StockLastAdded = TestDate.ToString();
+
             Error = AnStock.Valid(StockName, StockLastAdded, StockDescription);
+
             Assert.AreEqual(Error, "");
         }
 
@@ -362,12 +411,19 @@ namespace Testing3
         public void StockLastAddedMinPlusOne()
         {
             clsStock AnStock = new clsStock();
+
             string Error = "";
+
             DateTime TestDate;
+
             TestDate = DateTime.Now.Date;
+
             TestDate = TestDate.AddDays(1);
+
             string StockLastAdded = TestDate.ToString();
+
             Error = AnStock.Valid(StockName, StockLastAdded, StockDescription);
+
             Assert.AreNotEqual(Error, "");
         }
 
@@ -450,7 +506,7 @@ namespace Testing3
             //invoke the method
             Error = AnStock.Valid(StockName, StockLastAdded, StockDescription);
             Assert.AreEqual(Error, "");
-          }
+        }
 
         [TestMethod]
         public void StockDescriptionMax()
@@ -492,14 +548,8 @@ namespace Testing3
 
     }
 }
-    
-
-       
-        
 
 
 
 
-
-    
 

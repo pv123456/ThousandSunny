@@ -3,12 +3,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 
+
 namespace Testing3
 {
     [TestClass]
     public class tstStockCollection
     {
-        private object mStockList;
 
         [TestMethod]
         public void InstanceOK()
@@ -26,7 +26,7 @@ namespace Testing3
 
             clsStock TestItem = new clsStock();
 
-            TestItem.StockID = 1;
+            TestItem.StockID = 2;
             TestItem.StockAvailability = true;
             TestItem.StockLastAdded = DateTime.Now.Date;
             TestItem.StockName = "spiderman";
@@ -47,7 +47,7 @@ namespace Testing3
 
             clsStock TestStock = new clsStock();
 
-            TestStock.StockID = 1;
+            TestStock.StockID = 2;
             TestStock.StockAvailability = true;
             TestStock.StockLastAdded = DateTime.Now.Date;
             TestStock.StockName = "spiderman";
@@ -59,7 +59,7 @@ namespace Testing3
             Assert.AreEqual(AllStock.ThisStock, TestStock);
         }
 
-      
+
 
         [TestMethod]
         public void ListAndCountOK()
@@ -68,27 +68,158 @@ namespace Testing3
 
             List<clsStock> TestList = new List<clsStock>();
 
-            clsStock TestItem = new clsStock();
+            clsStock TestData = new clsStock();
 
-            TestItem.StockID = 1;
-            TestItem.StockAvailability = true;
-            TestItem.StockLastAdded = DateTime.Now.Date;
-            TestItem.StockName = "spiderman";
-            TestItem.StockDescription = "poster of all spidermen together";
-            TestItem.StockPrice = 3;
+            TestData.StockID = 2;
+            TestData.StockAvailability = true;
+            TestData.StockLastAdded = DateTime.Now.Date;
+            TestData.StockName = "spiderman";
+            TestData.StockDescription = "poster of all spidermen together";
+            TestData.StockPrice = 3;
 
-            TestList.Add(TestItem);
+            TestList.Add(TestData);
 
             AllStock.StockList = TestList;
 
             Assert.AreEqual(AllStock.Count, TestList.Count);
         }
 
-        
+      
 
-        
+        [TestMethod]
+        public void AddMethodOk()
+        {
+            // make an instance of collection
+            clsStockCollection AllStock = new clsStockCollection();
+            //test data
+            //create test data
+            clsStock TestData = new clsStock();
+            Int32 PrimaryKey = 0;
+
+            //Setting attributes 
+            TestData.StockID = 11;
+            TestData.StockName = "SpiderMan";
+            TestData.StockDescription = "All the spiderMen";
+            TestData.StockPrice = 3;
+            TestData.StockLastAdded = DateTime.Now.Date;
+            TestData.StockAvailability = true;
+
+            //Setting  to testdata
+            AllStock.ThisStock = TestData;
+            //Add the record
+            PrimaryKey = AllStock.Add();
+            //set Primary Key to test data
+            TestData.StockID = PrimaryKey;
+            //find record
+            AllStock.ThisStock.Find(PrimaryKey);
+            //test to see if value match
+            Assert.AreEqual(AllStock.ThisStock, TestData);
+
+        }
+
+
+
+
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsStockCollection AllStock = new clsStockCollection();
+
+            clsStock TestData = new clsStock();
+
+            Int32 PrimaryKey = 0;
+
+            TestData.StockAvailability = true;
+            TestData.StockName = "SpiderMan";
+            TestData.StockDescription = "Spiderman image";
+            TestData.StockLastAdded = DateTime.Now.Date;
+            TestData.StockPrice = 2;
+
+
+            AllStock.ThisStock = TestData;
+
+            PrimaryKey = AllStock.Add();
+
+            TestData.StockID = PrimaryKey;
+
+            TestData.StockAvailability = false;
+            TestData.StockName = "Coffee";
+            TestData.StockDescription = "Coffee image";
+            TestData.StockLastAdded = DateTime.Now.Date;
+            TestData.StockPrice = 2;
+
+            AllStock.ThisStock = TestData;
+
+            AllStock.Update();
+
+            AllStock.ThisStock.Find(PrimaryKey);
+
+            Assert.AreEqual(AllStock.ThisStock, TestData);
+            
+        }
+
+        [TestMethod]
+        public void DeleteMethodOk()
+        {
+            //create an instance of Supplier List
+            clsStockCollection AllStock = new clsStockCollection();
+            //create the test data
+            clsStock TestData = new clsStock();
+
+            //store primary key
+            Int32 PrimaryKey = 0;
+
+            //set attributes
+            TestData.StockID = 2;
+            TestData.StockName = "SpiderMan";
+            TestData.StockDescription = "All the spiderMen";
+            TestData.StockPrice = 3;
+            TestData.StockLastAdded = DateTime.Now.Date;
+            TestData.StockAvailability = true;
+
+
+            //set  test data
+            AllStock.ThisStock = TestData;
+            //add record
+            PrimaryKey = AllStock.Add();
+            //set primary ket to test data
+            TestData.StockID = PrimaryKey;
+            //find record
+            AllStock.ThisStock.Find(PrimaryKey);
+            //delete record
+            AllStock.Delete();
+
+            Boolean Found = AllStock.ThisStock.Find(PrimaryKey);
+            //test to see if record was not found
+            Assert.IsFalse(Found);
+
+        }
+        [TestMethod]
+        public void ReportByStockNameMethodOK()
+        {
+            //create an instance of the class contatining 
+            clsStockCollection StockList = new clsStockCollection();
+            //create instance  of the filter data
+            clsStockCollection FilteredStock = new clsStockCollection();
+            //apply a blank string (aim is to return all records)
+            FilteredStock.ReportByStockName("");
+            //test to see that value matches
+            Assert.AreEqual(StockList.Count, FilteredStock.Count);
+        }
+        [TestMethod]
+        public void ReportByStockNameNoneFound()
+        {
+            //create an instance of supplier collection
+            clsStockCollection FilteredStockList = new clsStockCollection();
+           
+            FilteredStockList.ReportByStockName("Happy faces");
+
+            Assert.AreEqual(0, FilteredStockList.Count);
+           
+        }
     }
 }
-    
 
-   
+
+

@@ -25,7 +25,7 @@ public class clsDataConnection
     DataTable dataTable = new DataTable();
     //string variable used to store the connection string
     private string connectionString;
-    private SqlCommand sprocName;
+   
 
     public clsDataConnection()
     {

@@ -6,52 +6,119 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 StockID;
+    private object StockPrice;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        if (IsPostBack == false)
+        {
+            if (StockID != -1)
+            {
+                DisplayStock();
+            }
+        }
     }
+
+    private void DisplayStock()
+    {
+        clsStockCollection Stock = new clsStockCollection();
+
+        Stock.ThisStock.Find(StockID);
+
+        txtStockID.Text = Stock.ThisStock.StockID.ToString();
+        txtStockName.Text = Stock.ThisStock.StockName;
+        txtStockDescription.Text = Stock.ThisStock.StockDescription;
+        txtStockPrice.Text = Stock.ThisStock.StockPrice.ToString();
+        txtStockLastAdded.Text = Stock.ThisStock.StockLastAdded.ToString();
+        chkStockAvaliability.Checked = Stock.ThisStock.StockAvailability;
+    }
+
+
+
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new instance of clsStock
         clsStock AnStock = new clsStock();
-        //capture the stockID
-        AnStock.StockID = Convert.ToInt32(txtStockID.Text);
-        AnStock.StockPrice = Convert.ToDecimal(txtStockPrice.Text);
-        AnStock.StockName = Convert.ToString(txtStockName.Text);
-        AnStock.StockLastAdded = Convert.ToDateTime(txtStockLastAdded.Text);
-        AnStock.StockDescription = Convert.ToString(txtStockDescription.Text);
-       
-        //store the stock in the session object
-        Session["AnStock"] = AnStock;
-        //navigate to the Stock page
-        Response.Redirect("StockViewer.aspx");
 
-       
+        //capture the stock 
+        string StockName = txtStockName.Text;
+        string StockDescription = txtStockDescription.Text;
+        string StockLastAdded = txtStockLastAdded.Text;
+        string Error = "";
+        Error = AnStock.Valid(StockName, StockDescription, StockLastAdded);
+        if (Error == " ")
+        {
+
+
+            //capture the stock
+            AnStock.StockID = StockID;
+            AnStock.StockName = StockName;
+            AnStock.StockDescription = StockDescription;
+            AnStock.StockPrice = Convert.ToDecimal(StockPrice);
+            AnStock.StockLastAdded = Convert.ToDateTime(StockLastAdded);
+            AnStock.StockAvailability = chkStockAvaliability.Checked;
+
+            //
+            clsStockCollection StockList = new clsStockCollection();
+            if (StockID == -1)
+            {
+                //
+                StockList.ThisStock = AnStock;
+
+                //
+                StockList.Add();
+            }
+            else
+            {
+
+                //
+                StockList.ThisStock.Find(StockID);
+                //
+                StockList.ThisStock = AnStock;
+
+                //
+                StockList.Add();
+
+            }
+            //
+            Response.Redirect("StockList.aspx");
+
+        }
+        else
+        {
+            IblError.Text = Error;
+        }
+
     }
+
 
 
     protected void btnFind_Click(object sender, EventArgs e)
     {
-        //create an instance of the stock class
+
         clsStock AnStock = new clsStock();
-        //variable to store the primary key
+
         Int32 StockID;
-        //variable to store the result of the find operation
+
         Boolean Found = false;
-        //get the primary key entered by the user
-        StockID = Convert.ToInt32( txtStockID.Text);
-        //Find the record
+
+        StockID = Convert.ToInt32(txtStockID.Text);
+
         Found = AnStock.Find(StockID);
-        //if found
+
         if (Found == true)
         {
-            //display the values of the properties in the form
-            txtStockDescription.Text = AnStock.StockDescription;
             txtStockName.Text = AnStock.StockName;
+            txtStockDescription.Text = AnStock.StockDescription;
+            txtStockPrice.Text = AnStock.StockPrice.ToString();
+            txtStockLastAdded.Text = AnStock.StockLastAdded.ToString();
+            chkStockAvaliability.Checked = AnStock.StockAvailability;
         }
-
     }
+
 }
