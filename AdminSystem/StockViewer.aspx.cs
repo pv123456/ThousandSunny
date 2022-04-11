@@ -15,12 +15,12 @@ public partial class _1Viewer : System.Web.UI.Page
         //get the data from the session object 
         AnStock = (clsStock)Session["AnStock"];
         //display stock for this entry
-        Response.Write(AnStock.StockID);
-        Response.Write(AnStock.StockPrice);
-        Response.Write(AnStock.StockName);
-        Response.Write(AnStock.StockLastAdded);
-        Response.Write(AnStock.StockDescription);
-        Response.Write(AnStock.StockAvailability);
+        Response.Write("Stock ID : " + AnStock.StockID + "<br />");
+        Response.Write("Stock Name : " + AnStock.StockName + "<br />");
+        Response.Write("Stock Description : " + AnStock.StockDescription + "<br />");
+        Response.Write("Stock Date : " + AnStock.StockLastAdded + "<br />");
+        Response.Write("Stock Price : " + AnStock.StockPrice + "<br />");
+        Response.Write("Stock Availability : " + AnStock.StockAvailability + "<br />");
 
     }
 }
