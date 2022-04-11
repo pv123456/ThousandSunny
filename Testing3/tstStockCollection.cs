@@ -218,6 +218,27 @@ namespace Testing3
             Assert.AreEqual(0, FilteredStockList.Count);
            
         }
+
+        [TestMethod]
+        public void ReportByStockNameTestDataFound()
+        {
+            clsStockCollection FilteredStock = new clsStockCollection();
+            Boolean OK = true;
+            FilteredStock.ReportByStockName("smiley face");
+            if (FilteredStock.Count == 2)
+            {
+                if (FilteredStock.StockList[0].StockID != 28)
+                {
+                    OK = false;
+                }
+                if (FilteredStock.StockList[1].StockID != 29)
+                {
+                    OK = false;
+                }
+
+                Assert.IsTrue(OK);
+            }
+        }
     }
 }
 
