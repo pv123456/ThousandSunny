@@ -10,10 +10,11 @@ using System.Web.UI.WebControls;
 public partial class _1_DataEntry : System.Web.UI.Page
 {
     Int32 StockID;
-    private object StockPrice;
+    
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        StockID = Convert.ToInt32(Session["StockID"]);
         if (IsPostBack == false)
         {
             if (StockID != -1)
@@ -49,7 +50,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string StockName = txtStockName.Text;
         string StockDescription = txtStockDescription.Text;
         string StockLastAdded = txtStockLastAdded.Text;
-        string Error = "";
+        string StockPrice = txtStockPrice.Text;
+        string Error ="";
         Error = AnStock.Valid(StockName, StockDescription, StockLastAdded);
         if (Error == " ")
         {
@@ -60,7 +62,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnStock.StockName = StockName;
             AnStock.StockDescription = StockDescription;
             AnStock.StockPrice = Convert.ToDecimal(StockPrice);
-            AnStock.StockLastAdded = Convert.ToDateTime(StockLastAdded);
+            AnStock.StockLastAdded = Convert.ToDateTime( StockLastAdded);
             AnStock.StockAvailability = chkStockAvaliability.Checked;
 
             //
@@ -107,7 +109,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         Boolean Found = false;
 
-        StockID = Convert.ToInt32(txtStockID.Text);
+        StockID = Convert.ToInt32( txtStockID.Text);
 
         Found = AnStock.Find(StockID);
 
@@ -117,8 +119,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtStockDescription.Text = AnStock.StockDescription;
             txtStockPrice.Text = AnStock.StockPrice.ToString();
             txtStockLastAdded.Text = AnStock.StockLastAdded.ToString();
-            chkStockAvaliability.Checked = AnStock.StockAvailability;
+            
         }
     }
 
+
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+
+    }
 }

@@ -8,7 +8,8 @@ namespace ClassLibrary
         
      
         List<clsStock> mStockList = new List<clsStock>();
-        private clsStock mThisStock;
+        clsStock mThisStock = new clsStock();
+
 
         public List<clsStock> StockList
         {
@@ -48,10 +49,10 @@ namespace ClassLibrary
 
         public clsStockCollection()
         {
-
+            
             clsDataConnection DB = new clsDataConnection();
 
-            DB.Execute("Sproc_tblStock_SelectAll");
+            DB.Execute("sproc_tblStock_SelectAll");
 
             PopulateArray(DB);
         }

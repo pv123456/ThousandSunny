@@ -109,7 +109,7 @@ namespace Testing3
             //boolean variable to store the result of the validation
             Boolean Found = false;
             //create some test data to use with the method 
-            Int32 StockID = 4;
+            Int32 StockID = 11;
             //invoke the method 
             Found = AnStock.Find(StockID);
             //test to see that the result is correct 
@@ -126,11 +126,11 @@ namespace Testing3
             //boolean  variable to record if data is OK 
             Boolean OK = true;
             //create some test data to use with the method 
-            Int32 StockID = 4;
+            Int32 StockID = 21;
             //invoke the method 
             Found = AnStock.Find(StockID);
             //check the stock id
-            if (AnStock.StockID != 4)
+            if (AnStock.StockID != 21)
             {
                 OK = false;
             }
