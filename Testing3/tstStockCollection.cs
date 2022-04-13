@@ -126,36 +126,36 @@ namespace Testing3
         {
             clsStockCollection AllStock = new clsStockCollection();
 
-            clsStock TestData = new clsStock();
+            clsStock TestItem = new clsStock();
 
             Int32 PrimaryKey = 0;
 
-            TestData.StockAvailability = true;
-            TestData.StockName = "SpiderMan";
-            TestData.StockDescription = "Spiderman image";
-            TestData.StockLastAdded = DateTime.Now.Date;
-            TestData.StockPrice = 2;
+            TestItem.StockAvailability = true;
+            TestItem.StockName = "SpiderMan";
+            TestItem.StockDescription = "Spiderman image";
+            TestItem.StockLastAdded = DateTime.Now.Date;
+            TestItem.StockPrice = 2;
 
 
-            AllStock.ThisStock = TestData;
+            AllStock.ThisStock = TestItem;
 
             PrimaryKey = AllStock.Add();
 
-            TestData.StockID = PrimaryKey;
+            TestItem.StockID = PrimaryKey;
 
-            TestData.StockAvailability = false;
-            TestData.StockName = "Coffee";
-            TestData.StockDescription = "Coffee image";
-            TestData.StockLastAdded = DateTime.Now.Date;
-            TestData.StockPrice = 2;
+            TestItem.StockAvailability = false;
+            TestItem.StockName = "Coffee";
+            TestItem.StockDescription = "Coffee image";
+            TestItem.StockLastAdded = DateTime.Now.Date;
+            TestItem.StockPrice = 2;
 
-            AllStock.ThisStock = TestData;
+            AllStock.ThisStock = TestItem;
 
             AllStock.Update();
 
             AllStock.ThisStock.Find(PrimaryKey);
 
-            Assert.AreEqual(AllStock.ThisStock, TestData);
+            Assert.AreEqual(AllStock.ThisStock, TestItem);
             
         }
 
@@ -165,26 +165,28 @@ namespace Testing3
             //create an instance of Supplier List
             clsStockCollection AllStock = new clsStockCollection();
             //create the test data
-            clsStock TestData = new clsStock();
+            clsStock TestItem = new clsStock();
 
             //store primary key
             Int32 PrimaryKey = 0;
 
             //set attributes
-            TestData.StockID = 2;
-            TestData.StockName = "SpiderMan";
-            TestData.StockDescription = "All the spiderMen";
-            TestData.StockPrice = 3;
-            TestData.StockLastAdded = DateTime.Now.Date;
-            TestData.StockAvailability = true;
+            TestItem.StockAvailability = true;
+            TestItem.StockID = 2;
+            TestItem.StockLastAdded = DateTime.Now.Date;
+            TestItem.StockName = "SpiderMan";
+            TestItem.StockDescription = "All the spiderMen";
+            TestItem.StockPrice = 3;
+           
+           
 
 
             //set  test data
-            AllStock.ThisStock = TestData;
+            AllStock.ThisStock = TestItem;
             //add record
             PrimaryKey = AllStock.Add();
             //set primary ket to test data
-            TestData.StockID = PrimaryKey;
+            TestItem.StockID = PrimaryKey;
             //find record
             AllStock.ThisStock.Find(PrimaryKey);
             //delete record
@@ -213,7 +215,7 @@ namespace Testing3
             //create an instance of supplier collection
             clsStockCollection FilteredStockList = new clsStockCollection();
            
-            FilteredStockList.ReportByStockName("Happy faces");
+            FilteredStockList.ReportByStockName("xxx xxx");
 
             Assert.AreEqual(0, FilteredStockList.Count);
            
@@ -232,6 +234,11 @@ namespace Testing3
                     OK = false;
                 }
                 if (FilteredStock.StockList[1].StockID != 29)
+                {
+                    OK = false;
+                }
+
+                else
                 {
                     OK = false;
                 }

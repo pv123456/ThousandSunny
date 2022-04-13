@@ -109,13 +109,13 @@ namespace ClassLibrary
             }
         }
 
-        public bool Find(int stockID)
+        public bool Find(int StockID)
         {
             {
                 //create an instance of the data connection 
                 clsDataConnection DB = new clsDataConnection();
                 //add the parameter for the address no to search for 
-                DB.AddParameter("@StockID", stockID);
+                DB.AddParameter("@StockID", StockID);
                 //execute the stored procedure 
                 DB.Execute("sproc_tblStock_FilterByStockID");
                 //if one record is found 
@@ -148,7 +148,7 @@ namespace ClassLibrary
 
             if (StockName.Length == 0)
             {
-                Error = Error + "The stock name may not be blank : ";
+                Error = Error + "The stock name may be blank : ";
             }
             if (StockName.Length > 30)
             {
@@ -184,7 +184,7 @@ namespace ClassLibrary
             if (StockDescription.Length == 0)
             {
 
-                Error = Error + " The description may not be blank : ";
+                Error = Error + " The description may be blank : ";
             }
 
             if (StockDescription.Length > 50)
@@ -196,6 +196,11 @@ namespace ClassLibrary
         }
 
         public static implicit operator clsStock(int v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static implicit operator int(clsStock v)
         {
             throw new NotImplementedException();
         }
