@@ -228,7 +228,7 @@ namespace Testing5
                 {
                     OK = false;
                 }
-                if (FilteredSupplierList.SupplierList[1].SupplierID != 92)
+                if (FilteredSupplierList.SupplierList[1].SupplierID != 406)
                 {
                     OK = false;
                 }
