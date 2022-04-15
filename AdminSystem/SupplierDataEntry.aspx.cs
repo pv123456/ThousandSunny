@@ -11,6 +11,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     Int32 SupplierID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        SupplierID = Convert.ToInt32(Session["SupplierID"]);
         if (IsPostBack == false) 
         {
             if (SupplierID != -1) 
@@ -74,7 +75,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 //set this supplier 
                 SupplierList.ThisSupplier = AnSupplier;
                 //Update record
-                SupplierList.Add();
+                SupplierList.Update();
             }
             //Goes to the viewer page
             Response.Redirect("SupplierList.aspx");
