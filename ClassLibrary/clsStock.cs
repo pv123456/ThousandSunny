@@ -7,8 +7,15 @@ namespace ClassLibrary
 {
     public class clsStock
     {
-        //private data member for Stock Availability
+        private Int32 mStockID;
+        private Decimal mStockPrice;
         private Boolean mStockAvailability;
+        private DateTime mStockLastAdded;
+        private String mStockName;
+        private String mStockDescription;
+
+
+
         //public property for Stock Availability
         public bool StockAvailability
         {
@@ -24,8 +31,8 @@ namespace ClassLibrary
             }
         }
 
-        //private date added data member 
-        private DateTime mStockLastAdded;
+       
+       
         //public property for date added
         public DateTime StockLastAdded
         {
@@ -41,8 +48,7 @@ namespace ClassLibrary
             }
         }
 
-        //private data member for the stockID property
-        private Int32 mStockID;
+       
         //public property for the address number 
         public int StockID
         {
@@ -58,8 +64,6 @@ namespace ClassLibrary
             }
         }
 
-        //private data member for Stock price
-        private decimal mStockPrice;
         //public property for stock price 
         public decimal StockPrice
         {
@@ -75,8 +79,7 @@ namespace ClassLibrary
             }
         }
 
-        //private data member for stock name
-        private string mStockName;
+       
         //public property for stock name 
         public string StockName
         {
@@ -92,8 +95,7 @@ namespace ClassLibrary
             }
         }
 
-        //private data member for Stock description
-        private string mStockDescription;
+     
         //public property for post code
         public string StockDescription
         {
@@ -111,7 +113,7 @@ namespace ClassLibrary
 
         public bool Find(int StockID)
         {
-            {
+            
                 //create an instance of the data connection 
                 clsDataConnection DB = new clsDataConnection();
                 //add the parameter for the address no to search for 
@@ -137,36 +139,34 @@ namespace ClassLibrary
                     //return false indicating a problem 
                     return false;
                 }
-            }
+            
         }
 
         public string Valid(string StockName, string StockLastAdded, string StockDescription)
         {
             string Error = "";
-
             DateTime DateTemp;
-
-
             if (StockName.Length == 0)
             {
-                Error = Error + "The stock name may be blank : ";
+                Error = Error + "<br>" + "The stock name may be blank : ";
             }
             if (StockName.Length > 30)
             {
-                Error = Error + "The Stock Name should be less then 30 charcters : ";
+                Error = Error + "<br>" + "The Stock Name should be less then 30 charcters : ";
             }
 
             if (StockDescription.Length == 0)
             {
 
-                Error = Error + " The description may be blank : ";
+                Error = Error + "<br>" + " The description may be blank : ";
             }
 
             if (StockDescription.Length > 50)
             {
-                Error = Error + " The stock description must be less then 50 charcters : ";
+                Error = Error + "<br>" + " The stock description must be less then 50 charcters : ";
 
             }
+
             try
             {
 
@@ -175,23 +175,21 @@ namespace ClassLibrary
                 if (DateTemp < DateTime.Now.Date)
                 {
 
-                    Error = Error + "The date cannot be in the past : ";
+                    Error = Error + "<br>" + "The date cannot be in the past : ";
                 }
 
                 if (DateTemp > DateTime.Now.Date)
 
                 {
 
-                    Error = Error + "The date cannot be in the future : ";
+                    Error = Error + "<br>" + "<br>" + "The date cannot be in the future : ";
                 }
             }
-
-
             catch
 
             {
 
-                Error = Error + "The date was not a valid date : ";
+                Error = Error +  "<br>" + "The date was not a valid date ";
             }
 
             return Error;

@@ -10,11 +10,11 @@ using System.Web.UI.WebControls;
 public partial class _1_DataEntry : System.Web.UI.Page
 {
     Int32 StockID;
-    
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+        StockID = Convert.ToInt32(Session["StockID"]);
         if (IsPostBack == false)
         {
             if (StockID != -1)
@@ -124,6 +124,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void txtStockLastAdded_TextChanged(object sender, EventArgs e)
     {
 
     }
