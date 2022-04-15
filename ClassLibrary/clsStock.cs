@@ -146,6 +146,7 @@ namespace ClassLibrary
 
             DateTime DateTemp;
 
+
             if (StockName.Length == 0)
             {
                 Error = Error + "The stock name may be blank : ";
@@ -153,6 +154,18 @@ namespace ClassLibrary
             if (StockName.Length > 30)
             {
                 Error = Error + "The Stock Name should be less then 30 charcters : ";
+            }
+
+            if (StockDescription.Length == 0)
+            {
+
+                Error = Error + " The description may be blank : ";
+            }
+
+            if (StockDescription.Length > 50)
+            {
+                Error = Error + " The stock description must be less then 50 charcters : ";
+
             }
             try
             {
@@ -181,29 +194,10 @@ namespace ClassLibrary
                 Error = Error + "The date was not a valid date : ";
             }
 
-            if (StockDescription.Length == 0)
-            {
-
-                Error = Error + " The description may be blank : ";
-            }
-
-            if (StockDescription.Length > 50)
-            {
-                Error = Error + " The stock description must be less then 50 charcters : ";
-
-            }
             return Error;
         }
 
-        public static implicit operator clsStock(int v)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static implicit operator int(clsStock v)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
 

@@ -14,7 +14,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        StockID = Convert.ToInt32(Session["StockID"]);
+       
         if (IsPostBack == false)
         {
             if (StockID != -1)
@@ -119,11 +119,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtStockDescription.Text = AnStock.StockDescription;
             txtStockPrice.Text = AnStock.StockPrice.ToString();
             txtStockLastAdded.Text = AnStock.StockLastAdded.ToString();
-            
+            chkStockAvaliability.Checked = AnStock.StockAvailability;
         }
     }
-
-
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {

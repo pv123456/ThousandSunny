@@ -31,17 +31,6 @@ public partial class _1_List : System.Web.UI.Page
 
 
 
-
-    protected void btnAdd_Click(object sender, EventArgs e)
-    {
-        Session["StockID"] = -1;
-
-        Response.Redirect("StockDataEntry.aspx");
-
-    }
-
-
-
     protected void btnEdit_Click(object sender, EventArgs e)
     {
         //variable to store primary Key
@@ -62,6 +51,16 @@ public partial class _1_List : System.Web.UI.Page
         {
             lblError.Text = "Please select a record to edit from the list";
         }
+
+    }
+
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+
+        Session["StockID"] = -1;
+
+        Response.Redirect("StockDataEntry.aspx");
 
     }
 
@@ -90,7 +89,9 @@ public partial class _1_List : System.Web.UI.Page
         lstStockList.DataSource = Stock.StockList;
 
         lstStockList.DataValueField = "StockID";
+
         lstStockList.DataTextField = "StockName";
+
         lstStockList.DataBind();
 
     }
