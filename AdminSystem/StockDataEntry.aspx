@@ -15,7 +15,7 @@
             <asp:Label ID="lblStockID" runat="server" style="z-index: 1; left: 51px; top: 55px; position: absolute" Text="StockID" width="166px"></asp:Label>
             <asp:Label ID="lblStockDescription" runat="server" style="z-index: 1; left: 32px; top: 274px; position: absolute" Text="Stock Description" width="166px"></asp:Label>
             <asp:TextBox ID="txtStockID" runat="server" style="z-index: 1; left: 168px; top: 54px; position: absolute"></asp:TextBox>
-            <asp:TextBox ID="txtStockLastAdded" runat="server" style="z-index: 1; left: 233px; top: 211px; position: absolute"></asp:TextBox>
+            <asp:TextBox ID="txtStockLastAdded" runat="server" style="z-index: 1; left: 233px; top: 211px; position: absolute" OnTextChanged="txtStockLastAdded_TextChanged"></asp:TextBox>
             <asp:TextBox ID="txtStockPrice" runat="server" style="z-index: 1; left: 186px; top: 105px; position: absolute"></asp:TextBox>
             <asp:TextBox ID="txtStockName" runat="server" style="z-index: 1; left: 195px; top: 162px; position: absolute"></asp:TextBox>
             <asp:TextBox ID="txtStockDescription" runat="server" style="z-index: 1; left: 228px; top: 270px; position: absolute; height: 23px"></asp:TextBox>

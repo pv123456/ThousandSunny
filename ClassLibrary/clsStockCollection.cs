@@ -9,8 +9,6 @@ namespace ClassLibrary
      
         List<clsStock> mStockList = new List<clsStock>();
         clsStock mThisStock = new clsStock();
-
-
         public List<clsStock> StockList
         {
             get
