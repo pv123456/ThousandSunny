@@ -109,7 +109,7 @@ namespace Testing3
             //boolean variable to store the result of the validation
             Boolean Found = false;
             //create some test data to use with the method 
-            Int32 StockID = 11;
+            Int32 StockID = 14;
             //invoke the method 
             Found = AnStock.Find(StockID);
             //test to see that the result is correct 
@@ -148,11 +148,11 @@ namespace Testing3
             Boolean Found = false;
             Boolean OK = true;
             //test data
-            Int32 StockID = 11;
+            Int32 StockID = 14;
             //invoke find method
             Found = AnStock.Find(StockID);
             //check price  of stock matches
-            if (AnStock.StockPrice != 2)
+            if (AnStock.StockPrice != 3)
             {
                 OK = false;
             }
@@ -169,11 +169,11 @@ namespace Testing3
             Boolean Found = false;
             Boolean OK = true;
             //test data
-            Int32 StockID = 11;
+            Int32 StockID = 14;
             //invoke find method
             Found = AnStock.Find(StockID);
             //check last added of stock matches
-            if (AnStock.StockLastAdded != Convert.ToDateTime("16/09/2015"))
+            if (AnStock.StockLastAdded != Convert.ToDateTime("31/03/2022"))
             {
                 OK = false;
             }
@@ -190,11 +190,11 @@ namespace Testing3
             Boolean Found = false;
             Boolean OK = true;
             //test data
-            Int32 StockID = 11;
+            Int32 StockID = 14;
             //invoke find method
             Found = AnStock.Find(StockID);
             //check name of stock matches
-            if (AnStock.StockName != Convert.ToString("Test Name"))
+            if (AnStock.StockName != Convert.ToString("SuperMan"))
             {
                 OK = false;
             }
@@ -211,7 +211,7 @@ namespace Testing3
             Boolean Found = false;
             Boolean OK = true;
             //test data
-            Int32 StockID = 11;
+            Int32 StockID = 14;
             //invoke find method
             Found = AnStock.Find(StockID);
             //check Avalibility  of stock matches
@@ -232,11 +232,11 @@ namespace Testing3
             Boolean Found = false;
             Boolean OK = true;
             //test data
-            Int32 StockID = 11;
+            Int32 StockID = 14;
             //invoke find method
             Found = AnStock.Find(StockID);
             //check Description  of stock matches
-            if (AnStock.StockDescription != Convert.ToString("Test Description"))
+            if (AnStock.StockDescription != Convert.ToString("poster of all superman"))
             {
                 OK = false;
             }
