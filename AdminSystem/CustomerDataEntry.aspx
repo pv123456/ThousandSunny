@@ -10,6 +10,7 @@
     <form id="form1" runat="server" aria-busy="False">
         <asp:Label ID="lblCustId" runat="server" Text="ID:" width="81px"></asp:Label>
 &nbsp;<asp:TextBox ID="txtCustId" runat="server"></asp:TextBox>
+        <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
         <br />
         <asp:Label ID="lblCustUsername" runat="server" Text="Username:" width="81px"></asp:Label>
 &nbsp;<asp:TextBox ID="txtCustUsername" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
