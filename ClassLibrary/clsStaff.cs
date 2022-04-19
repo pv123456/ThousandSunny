@@ -100,12 +100,12 @@ namespace ClassLibrary
             DB.Execute("sproc_tblStaffManagment_FilterByStaffId");
             if (DB.Count == 1)
             {
-                mStaffId = 2;
-                mStaffFullName = "Erwin Smith";
-                mStartDate = Convert.ToDateTime("02/10/2020");
-                mIsAdmin = true;
-                mStaffEmail = "ErwinS@outlook.com";
-                mStaffPassword = "SA123";
+                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
+                mStaffFullName = Convert.ToString(DB.DataTable.Rows[0]["StaffFullName"]);
+                mStartDate = Convert.ToDateTime(DB.DataTable.Rows[0]["StartDate"]);
+                mIsAdmin = Convert.ToBoolean(DB.DataTable.Rows[0]["IsAdmin"]);
+                mStaffEmail = Convert.ToString(DB.DataTable.Rows[0]["StaffEmail"]);
+                mStaffPassword = Convert.ToString(DB.DataTable.Rows[0]["StaffPassword"]);
                 return true;
             }
             else
