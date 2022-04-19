@@ -56,7 +56,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string Error ="";
 
         Error = AnStock.Valid(StockName, StockDescription, StockLastAdded);
-        if (Error == " ")
+        if (Error == "")
         {
 
 
