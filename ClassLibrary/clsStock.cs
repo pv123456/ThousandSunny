@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ClassLibrary
 {
@@ -31,8 +28,8 @@ namespace ClassLibrary
             }
         }
 
-       
-       
+
+
         //public property for date added
         public DateTime StockLastAdded
         {
@@ -48,9 +45,9 @@ namespace ClassLibrary
             }
         }
 
-       
+
         //public property for the address number 
-        public int StockID
+        public Int32 StockID
         {
             get
             {
@@ -65,7 +62,7 @@ namespace ClassLibrary
         }
 
         //public property for stock price 
-        public decimal StockPrice
+        public Decimal StockPrice
         {
             get
             {
@@ -79,7 +76,7 @@ namespace ClassLibrary
             }
         }
 
-       
+
         //public property for stock name 
         public string StockName
         {
@@ -95,10 +92,11 @@ namespace ClassLibrary
             }
         }
 
-     
+
         //public property for post code
         public string StockDescription
         {
+
             get
             {
                 //return the private data 
@@ -113,36 +111,36 @@ namespace ClassLibrary
 
         public bool Find(int StockID)
         {
-            
-                //create an instance of the data connection 
-                clsDataConnection DB = new clsDataConnection();
-                //add the parameter for the address no to search for 
-                DB.AddParameter("@StockID", StockID);
-                //execute the stored procedure 
-                DB.Execute("sproc_tblStock_FilterByStockID");
-                //if one record is found 
-                if (DB.Count == 1)
-                {
-                    //copy the data from the database to the private data members 
-                    mStockID = Convert.ToInt32(DB.DataTable.Rows[0]["StockID"]);
-                    mStockName = Convert.ToString(DB.DataTable.Rows[0]["StockName"]);
-                    mStockDescription = Convert.ToString(DB.DataTable.Rows[0]["StockDescription"]);
-                    mStockLastAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["StockLastAdded"]);
-                    mStockPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["StockPrice"]);
-                    mStockAvailability = Convert.ToBoolean(DB.DataTable.Rows[0]["StockAvailability"]);
-                    //always return true 
-                    return true;
-                }
-                //if no record was found 
-                else
-                {
-                    //return false indicating a problem 
-                    return false;
-                }
-            
+
+            //create an instance of the data connection 
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the address no to search for 
+            DB.AddParameter("@StockID", StockID);
+            //execute the stored procedure 
+            DB.Execute("sproc_tblStock_FilterByStockID");
+            //if one record is found 
+            if (DB.Count == 1)
+            {
+                //copy the data from the database to the private data members 
+                mStockID = Convert.ToInt32(DB.DataTable.Rows[0]["StockID"]);
+                mStockName = Convert.ToString(DB.DataTable.Rows[0]["StockName"]);
+                mStockDescription = Convert.ToString(DB.DataTable.Rows[0]["StockDescription"]);
+                mStockLastAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["StockLastAdded"]);
+                mStockPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["StockPrice"]);
+                mStockAvailability = Convert.ToBoolean(DB.DataTable.Rows[0]["StockAvailability"]);
+                //always return true 
+                return true;
+            }
+            //if no record was found 
+            else
+            {
+                //return false indicating a problem 
+                return false;
+            }
+
         }
 
-        public string Valid(string StockName, string StockLastAdded, string StockDescription)
+        public string Valid(string StockName, string StockDescription, string StockLastAdded)
         {
             string Error = "";
             DateTime DateTemp;
@@ -174,30 +172,29 @@ namespace ClassLibrary
 
                 if (DateTemp < DateTime.Now.Date)
                 {
-
                     Error = Error + "<br>" + "The date cannot be in the past : ";
                 }
-
                 if (DateTemp > DateTime.Now.Date)
 
                 {
 
-                    Error = Error + "<br>" + "<br>" + "The date cannot be in the future : ";
+                    Error = Error + "<br>" + "The date cannot be in the future : ";
                 }
             }
             catch
 
             {
 
-                Error = Error +  "<br>" + "The date was not a valid date ";
+                Error = Error + "<br>" + "The date was not a valid date ";
             }
 
             return Error;
         }
 
-       
     }
 }
+
+
 
     
 

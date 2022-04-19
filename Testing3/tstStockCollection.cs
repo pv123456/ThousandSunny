@@ -178,9 +178,6 @@ namespace Testing3
             TestData.StockDescription = "All the spiderMen";
             TestData.StockPrice = 3;
 
-
-
-
             //set  test data
             AllStock.ThisStock = TestData;
             //add record

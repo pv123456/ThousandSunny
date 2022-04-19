@@ -20,7 +20,7 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
 
     protected void btnYes_Click(object sender, EventArgs e)
     {
-        //create an instance of the supplier list class
+        //create an instance of  list class
         clsStockCollection StockList = new clsStockCollection();
         //find the recond to delete
         StockList.ThisStock.Find(StockID);

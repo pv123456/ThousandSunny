@@ -10,8 +10,6 @@ using System.Web.UI.WebControls;
 public partial class _1_DataEntry : System.Web.UI.Page
 {
     Int32 StockID;
-
-
     protected void Page_Load(object sender, EventArgs e)
     {
         StockID = Convert.ToInt32(Session["StockID"]);
@@ -48,10 +46,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         //capture the stock 
         string StockName = txtStockName.Text;
+
         string StockDescription = txtStockDescription.Text;
+
         string StockLastAdded = txtStockLastAdded.Text;
+
         string StockPrice = txtStockPrice.Text;
+
         string Error ="";
+
         Error = AnStock.Valid(StockName, StockDescription, StockLastAdded);
         if (Error == " ")
         {
@@ -63,6 +66,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnStock.StockDescription = StockDescription;
             AnStock.StockPrice = Convert.ToDecimal(StockPrice);
             AnStock.StockLastAdded = Convert.ToDateTime( StockLastAdded);
+
             AnStock.StockAvailability = chkStockAvaliability.Checked;
 
             //
@@ -75,25 +79,22 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 //
                 StockList.Add();
             }
+
             else
             {
-
-                //
                 StockList.ThisStock.Find(StockID);
-                //
                 StockList.ThisStock = AnStock;
+                StockList.Update();
 
-                //
-                StockList.Add();
+
 
             }
-            //
-            Response.Redirect("StockList.aspx");
+               Response.Redirect("StockList.aspx");
 
         }
         else
         {
-            IblError.Text = Error;
+            lblError.Text = Error;
         }
 
     }
@@ -123,12 +124,13 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
     }
 
-    protected void btnCancel_Click(object sender, EventArgs e)
+
+    protected void txtStockLastAdded_TextChanged(object sender, EventArgs e)
     {
 
     }
 
-    protected void txtStockLastAdded_TextChanged(object sender, EventArgs e)
+    protected void btnCancel_Click(object sender, EventArgs e)
     {
 
     }
