@@ -92,16 +92,26 @@ namespace ClassLibrary
             }
         }
 
-        public bool Find(int staffId)
+        public bool Find(int StaffId)
         {
-            mStaffId = 2;
-            mStaffFullName = "Erwin Smith";
-            mStartDate = Convert.ToDateTime("02/10/2020");
-            mIsAdmin = true;
-            mStaffEmail = "ErwinS@outlook.com";
-            mStaffPassword = "SA123";
-            return true;
-          
+
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@StaffId", StaffId);
+            DB.Execute("sproc_tblStaffManagment_FilterByStaffId");
+            if (DB.Count == 1)
+            {
+                mStaffId = 2;
+                mStaffFullName = "Erwin Smith";
+                mStartDate = Convert.ToDateTime("02/10/2020");
+                mIsAdmin = true;
+                mStaffEmail = "ErwinS@outlook.com";
+                mStaffPassword = "SA123";
+                return true;
+            }
+            else
+            {
+                return false;
+            }      
         }
     }
 }
