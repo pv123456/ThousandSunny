@@ -21,7 +21,7 @@
             <asp:TextBox ID="txtStockDescription" runat="server" style="z-index: 1; left: 228px; top: 270px; position: absolute; height: 23px"></asp:TextBox>
         </div>
         <asp:CheckBox ID="chkStockAvaliability" runat="server" style="z-index: 1; left: 66px; top: 342px; position: absolute" Text="StockAvaliability" />
-        <asp:Label ID="IblError" runat="server" style="z-index: 1; left: 63px; top: 409px; position: absolute"></asp:Label>
+        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 63px; top: 409px; position: absolute"></asp:Label>
         <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 111px; top: 451px; position: absolute; height: 36px; width: 64px;" Text="OK" />
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 209px; position: absolute; top: 449px; width: 80px; height: 38px;" Text="Cancel" OnClick="btnCancel_Click" />
         <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 393px; top: 46px; position: absolute" Text="Find" />

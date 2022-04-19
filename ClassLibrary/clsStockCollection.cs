@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
 namespace ClassLibrary
 {
     public class clsStockCollection
@@ -14,9 +13,9 @@ namespace ClassLibrary
             get
             {
                 return mStockList;
-            
-        }
-        set
+
+            }
+           set
             {
                 mStockList = value;
             }
