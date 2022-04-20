@@ -18,16 +18,35 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //Creates a new instance of clsStaff
         clsStaff AStaff = new clsStaff();
         //Captures the data
-        AStaff.StaffId = Convert.ToInt32(txtStaffId.Text);
-        AStaff.StaffFullName = txtStaffFullName.Text;
-        AStaff.StartDate = Convert.ToDateTime(txtStartDate.Text);
-        AStaff.IsAdmin = chkIsAdmin.Checked;
-        AStaff.StaffPassword = txtStaffPassword.Text;
-        AStaff.StaffEmail = txtStaffEmail.Text;
+       // AStaff.StaffId = Convert.ToInt32(txtStaffId.Text);
+        string StaffFullName = txtStaffFullName.Text;
+        string StartDate = txtStartDate.Text;
+     
+        string StaffPassword = txtStaffPassword.Text;
+        string StaffEmail = txtStaffEmail.Text;
+        //Variable to store any error message
+        string Error = "";
+        //validate data
+        Error = AStaff.Valid(StaffFullName, StartDate, StaffEmail, StaffPassword);
+        if(Error == "")
+        {
+            AStaff.StaffFullName = StaffFullName;
+            AStaff.StartDate = Convert.ToDateTime(StartDate);
+            AStaff.StaffEmail = StaffEmail;
+            AStaff.StaffPassword = StaffPassword;
+            AStaff.IsAdmin = chkIsAdmin.Checked;
         //Stores the staff in the session object
         Session["AStaff"] = AStaff;
         //Navigate to viweer page
         Response.Redirect("StaffViewer.aspx");
+
+        }
+        else
+        {
+            //Displays text error message
+            lblError.Text = Error;
+        }
+        
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
