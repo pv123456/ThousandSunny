@@ -113,5 +113,56 @@ namespace ClassLibrary
                 return false;
             }      
         }
+
+        public string Valid(string staffFullName, string startDate, string staffEmail, string staffPassword)
+        {
+            //Create a string variable to store the error
+            String Error = "";
+            DateTime DateTemp;
+            //If the StaffFullName is blank
+            if(staffFullName.Length == 0)
+            {
+                //Record the error
+                Error = Error + "The Full Name can not be blank : ";
+            }
+            if(staffFullName.Length > 100)
+            {
+                Error = Error + "The Full Name must be 100 characters or less : ";
+            }
+            if(staffEmail.Length == 0)
+            {
+                Error = Error + "The Email can not be blank : ";
+            }
+            if(staffEmail.Length > 50)
+            {
+                Error = Error + "The Email must be 50 characters or less";
+            }
+            if (staffPassword.Length == 0) 
+            {
+                Error = Error + "The Password can not be blank : ";
+            }
+            if(staffPassword.Length > 50)
+            {
+                Error = Error + "The Password must be 50 characters or less : ";
+            }
+            try
+            {
+                DateTemp = Convert.ToDateTime(startDate);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The Start Date can not be in the past : ";
+                }
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The Start Date can not be in the Future : ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The Date was not a valid date : ";
+            }
+            //Return any error message
+            return Error;
+        }
     }
 }
