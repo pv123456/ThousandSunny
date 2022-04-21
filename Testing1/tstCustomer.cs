@@ -7,6 +7,12 @@ namespace Testing1
     [TestClass]
     public class tstCustomer
     {
+        //good test data
+        string CustUsername = "TestName1";
+        string CustPassword = "TestTest1";
+        string CustEmail = "test1@gmail.com";
+        string CustDOB = DateTime.Now.Date.ToString();
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -172,5 +178,392 @@ namespace Testing1
             }
             Assert.IsTrue(OK);
         }
+
+        //Valid Testing
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error,"");
+        }
+
+        [TestMethod]
+        public void custUsernameMinLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustUsername = ""; //Should fail
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void custUsernameMin()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustUsername = "a"; //Should pass
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void custUsernameMinPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustUsername = "aa"; //Should pass
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void custUsernameMid()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustUsername = "aaaaaaaaa"; //Should pass
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void custUsernameMaxLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustUsername = "aaaaaaaaaaaaaa"; //Should pass
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void custUsernameMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustUsername = "aaaaaaaaaaaaaaa"; //Should pass
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void custUsernameMaxPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustUsername = "aaaaaaaaaaaaaaaa"; //Should fail
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void custUsernameExtremeMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustUsername = "";
+            CustUsername = CustUsername.PadRight(500, 'a'); //Should fail
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //CustPassword Tests
+        [TestMethod]
+        public void CustPasswordMinLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustPassword = ""; //Should fail
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustPasswordMin()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustPassword = "a"; //Should pass
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustPasswordMinPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustPassword = "aa"; //Should pass
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustPasswordMid()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustPassword = "aaaaaaaaaaaa"; //Should pass
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustPasswordMaxLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustPassword = "aaaaaaaaaaaaaaaaaaaaaaaa"; //Should pass
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustPasswordMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustPassword = "aaaaaaaaaaaaaaaaaaaaaaaaa"; //Should pass
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustPasswordMaxPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustPassword = "aaaaaaaaaaaaaaaaaaaaaaaaaa"; //Should fail
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustPasswordExtremeMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustPassword = "";
+            CustEmail = CustPassword.PadRight(500, 'a'); //Should fail
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+
+        //CustEmail Tests
+        [TestMethod]
+        public void CustEmailMinLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustEmail = ""; //Should fail
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustEmailMin()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustEmail = "a"; //Should pass
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustEmailMinPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustEmail = "aa"; //Should pass
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustEmailMid()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustEmail = "aaaaaaaaaaaa"; //Should pass
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustEmailMaxLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustEmail = "aaaaaaaaaaaaaaaaaaaaaaaa"; //Should pass
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustEmailMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustEmail = "aaaaaaaaaaaaaaaaaaaaaaaaa"; //Should pass
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustEmailMaxPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustEmail = "aaaaaaaaaaaaaaaaaaaaaaaaaa"; //Should fail
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustEmailExtremeMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustEmail = "";
+            CustEmail = CustEmail.PadRight(500, 'a'); //Should fail
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        //CustDOB Tests
+        [TestMethod]
+        public void CustDOBExtremeMin()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-500); //Should Fail
+            string CustDOB = TestDate.ToString();
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustDOBMinLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-101); //Should Fail
+            string CustDOB = TestDate.ToString();
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustDOBMin()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-100); //Should Pass
+            string CustDOB = TestDate.ToString();
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustDOBMinPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-99); //Should Pass
+            string CustDOB = TestDate.ToString();
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustDOBMid()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-50); //Should Pass
+            string CustDOB = TestDate.ToString();
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustDOBMaxLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-1); //Should Pass
+            string CustDOB = TestDate.ToString();
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustDOBMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;//Should Pass
+            string CustDOB = TestDate.ToString();
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustDOBMaxPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(1); //Should Fail
+            string CustDOB = TestDate.ToString();
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustDOBExtremeMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(100); //Should Fail
+            string CustDOB = TestDate.ToString();
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustDOBInvalidData()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string CustDOB = "Not a date";
+            Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
+            Assert.AreNotEqual(Error, "");
+        }
+
     }
 }
