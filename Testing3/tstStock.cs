@@ -301,7 +301,7 @@ namespace Testing3
             clsStock AnStock = new clsStock();
             String Error = "";
             string StockName = "";
-            StockName = StockName.PadRight(30, 'a');
+            StockName = StockName.PadRight(30, 'b');
             Error = AnStock.Valid(StockName, StockDescription, StockLastAdded);
             Assert.AreEqual(Error, "");
         }
@@ -311,7 +311,8 @@ namespace Testing3
         {
             clsStock AnStock = new clsStock();
             String Error = "";
-            string StockName = "bbbbbbbbbbb";
+            string StockName = "";
+            StockName = StockName.PadRight(15, 'b');
             Error = AnStock.Valid(StockName, StockDescription, StockLastAdded);
             Assert.AreEqual(Error, "");
         }
@@ -322,7 +323,7 @@ namespace Testing3
             clsStock AnStock = new clsStock();
             String Error = "";
             string StockName = "";
-            StockName = StockName.PadRight(100, 'a');
+            StockName = StockName.PadRight(100, 'b');
             Error = AnStock.Valid(StockName, StockDescription, StockLastAdded);
             Assert.AreNotEqual(Error, "");
         }
@@ -394,7 +395,8 @@ namespace Testing3
         {
             clsStock AnStock = new clsStock();
             String Error = "";
-            string StockDescription = "aaaaaaaaaaaaaaaaaaaaaa";
+            string StockDescription = "";
+            StockDescription = StockDescription.PadRight(25, 'a');
             Error = AnStock.Valid(StockName, StockDescription, StockLastAdded);
             Assert.AreEqual(Error, "");
         }
@@ -472,6 +474,29 @@ namespace Testing3
 
             Assert.AreNotEqual(Error, "");
         }
+
+        [TestMethod]
+        public void StockLastAddedMin()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //Create Test data
+            DateTime TestData;
+            //Setting variable to today day
+            TestData = DateTime.Now.Date;
+            //covert data variable to string variable
+            string StockLastAdded = TestData.ToString();
+            //invoke method
+            Error = AnStock.Valid(StockName, StockDescription, StockLastAdded);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+
+
+
 
         [TestMethod]
         public void StockLastAddedExtremeMax()
