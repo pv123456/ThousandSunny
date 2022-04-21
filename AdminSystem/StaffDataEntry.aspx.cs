@@ -21,7 +21,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
        // AStaff.StaffId = Convert.ToInt32(txtStaffId.Text);
         string StaffFullName = txtStaffFullName.Text;
         string StartDate = txtStartDate.Text;
-     
         string StaffPassword = txtStaffPassword.Text;
         string StaffEmail = txtStaffEmail.Text;
         //Variable to store any error message
@@ -35,10 +34,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AStaff.StaffEmail = StaffEmail;
             AStaff.StaffPassword = StaffPassword;
             AStaff.IsAdmin = chkIsAdmin.Checked;
-        //Stores the staff in the session object
-        Session["AStaff"] = AStaff;
+            //Create a new instance of the Staff collection
+            clsStaffCollection StaffList = new clsStaffCollection();
+            //Sets the thisStaff property
+            StaffList.ThisStaff = AStaff;
+            //Adds the new record
+            StaffList.add();
         //Navigate to viweer page
-        Response.Redirect("StaffViewer.aspx");
+        Response.Redirect("StaffList.aspx");
 
         }
         else

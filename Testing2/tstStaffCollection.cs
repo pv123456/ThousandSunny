@@ -93,6 +93,34 @@ namespace Testing2
 
         }
 
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            //Create the item of test data
+            clsStaff TestItem = new clsStaff();
+            //Var to store the primary key
+            Int32 PrimaryKey = 0;
+            //Sets its properties
+            TestItem.StaffId = 1;
+            TestItem.StaffFullName = "Erwin Smith";
+            TestItem.StartDate = DateTime.Now.Date;
+            TestItem.StaffEmail = "ErwinS@outlook.com";
+            TestItem.StaffPassword = "SA123";
+            TestItem.IsAdmin = true;
+            //Sets this staff to the test data
+            AllStaff.ThisStaff = TestItem;
+            //Add the record
+            PrimaryKey = AllStaff.add();
+            //Set the primary key of the test data
+            TestItem.StaffId = PrimaryKey;
+            //Find the record
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            //Test to see that the two variables are the same
+            Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+
+        }
+
     }
 
 } 
