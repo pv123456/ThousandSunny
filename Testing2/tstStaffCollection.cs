@@ -53,7 +53,7 @@ namespace Testing2
         public void ThisStaffOK()
         {
             clsStaffCollection AllStaff = new clsStaffCollection();
-            
+
             clsStaff TestItem = new clsStaff();
             //Sets it properties
             TestItem.StaffId = 2;
@@ -62,7 +62,7 @@ namespace Testing2
             TestItem.StaffEmail = "ErwinS@outlook.com";
             TestItem.StaffPassword = "SA123";
             TestItem.IsAdmin = true;
-        
+
             //Assign the data to the propertie
             AllStaff.ThisStaff = TestItem;
             //Test to see the two values asr the same
@@ -159,5 +159,34 @@ namespace Testing2
             Assert.AreEqual(AllStaff.ThisStaff, TestItem);
 
         }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            //Create the item of test data
+            clsStaff TestItem = new clsStaff();
+            //Var to store the primary key
+            Int32 PrimaryKey = 0;
+            //Sets its properties
+            TestItem.StaffId = 1;
+            TestItem.StaffFullName = "Erwin Smith";
+            TestItem.StartDate = DateTime.Now.Date;
+            TestItem.StaffEmail = "ErwinS@outlook.com";
+            TestItem.StaffPassword = "SA123";
+            TestItem.IsAdmin = true;
+            //Sets this staff to the test data
+            AllStaff.ThisStaff = TestItem;
+            //Add the record
+            PrimaryKey = AllStaff.add();
+            //Set the primary key of the test data
+            TestItem.StaffId = PrimaryKey;
+            AllStaff.Delete();
+            //Find the record
+           Boolean Found = AllStaff.ThisStaff.Find(PrimaryKey);
+            //Test to see that the two variables are the same
+            Assert.IsFalse(Found);
+        }
+    }
 
 } 

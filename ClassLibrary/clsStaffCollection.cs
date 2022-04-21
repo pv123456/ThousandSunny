@@ -109,5 +109,16 @@ namespace ClassLibrary
             DB.AddParameter("@StaffPassword", mThisStaff.StaffPassword);
             DB.Execute("sproc_tblStaffManagment_Update");
         }
+
+        public void Delete()
+        {
+            //delete the record pointed to by thisStaff
+            //Connect to database
+            clsDataConnection DB = new clsDataConnection();
+            //Set perameters for stored procedures
+            DB.AddParameter("@StaffId", mThisStaff.StaffId);
+            //Execute 
+            DB.Execute("sproc_tblStaffManagment_Delete");
+        }
     }
 }
