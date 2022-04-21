@@ -8,9 +8,34 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //Vatiable to store the primary key with page levele scope
+    Int32 StaffId;
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        //Get the numbet of the staff to be processed
+        StaffId = Convert.ToInt32(Session["StaffId"]);
+        if(IsPostBack == false)
+        {
+            //If this is not a new record
+            if(StaffId != -1)
+            {
+                //Display the current data for the record
+                DisplayStaff();
+            }
+        }
+    }
+
+    void DisplayStaff()
+    {
+        clsStaffCollection StaffBook = new clsStaffCollection();
+        //Find the record to update
+        txtStaffId.Text = StaffBook.ThisStaff.StaffId.ToString();
+        txtStaffFullName.Text = StaffBook.ThisStaff.StaffFullName;
+        txtStaffEmail.Text = StaffBook.ThisStaff.StaffEmail;
+        txtStaffPassword.Text = StaffBook.ThisStaff.StaffPassword;
+        txtStartDate.Text = StaffBook.ThisStaff.StartDate.ToString();
+        chkIsAdmin.Checked = StaffBook.ThisStaff.IsAdmin;
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -27,8 +52,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string Error = "";
         //validate data
         Error = AStaff.Valid(StaffFullName, StartDate, StaffEmail, StaffPassword);
-        if(Error == "")
+        if (Error == "")
         {
+            AStaff.StaffId = StaffId;
             AStaff.StaffFullName = StaffFullName;
             AStaff.StartDate = Convert.ToDateTime(StartDate);
             AStaff.StaffEmail = StaffEmail;
@@ -36,20 +62,35 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AStaff.IsAdmin = chkIsAdmin.Checked;
             //Create a new instance of the Staff collection
             clsStaffCollection StaffList = new clsStaffCollection();
-            //Sets the thisStaff property
-            StaffList.ThisStaff = AStaff;
-            //Adds the new record
-            StaffList.add();
-        //Navigate to viweer page
-        Response.Redirect("StaffList.aspx");
+
+
+            //If this is a new record
+            if (StaffId == -1)
+            {
+                //Set thisStaff property
+                StaffList.ThisStaff = AStaff;
+                //AddThe new record
+                StaffList.add();
+            }
+            //Otherwise it must update
+            else
+            {
+                //Find the record to update
+                StaffList.ThisStaff.Find(StaffId);
+                //Set the thisStaff property
+                StaffList.ThisStaff = AStaff;
+                //Update the record
+                StaffList.Update();
+            }
+            //Redirect back to the list page
+            Response.Redirect("StaffList.aspx");
 
         }
         else
         {
-            //Displays text error message
+            //Display error message
             lblError.Text = Error;
         }
-        
     }
 
     protected void btnFind_Click(object sender, EventArgs e)

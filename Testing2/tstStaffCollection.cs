@@ -121,6 +121,43 @@ namespace Testing2
 
         }
 
-    }
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            //Create the item of test data
+            clsStaff TestItem = new clsStaff();
+            //Var to store the primary key
+            Int32 PrimaryKey = 0;
+            //Sets its properties
+            TestItem.StaffId = 4;
+            TestItem.StaffFullName = "Erwin Smith";
+            TestItem.StartDate = DateTime.Now.Date;
+            TestItem.StaffEmail = "ErwinS@outlook.com";
+            TestItem.StaffPassword = "SA123";
+            TestItem.IsAdmin = true;
+            //Sets this staff to the test data
+            AllStaff.ThisStaff = TestItem;
+            //Add the record
+            PrimaryKey = AllStaff.add();
+            //Set the primary key of the test data
+            TestItem.StaffId = PrimaryKey;
+            //Modify the test data
+            TestItem.StaffId = 5;
+            TestItem.StaffFullName = "Joey koh";
+            TestItem.StartDate = DateTime.Now.Date;
+            TestItem.StaffEmail = "Joey@outlook.com";
+            TestItem.StaffPassword = "joyyo";
+            TestItem.IsAdmin = true;
+            //set the record based on the new test data
+            AllStaff.ThisStaff = TestItem;
+            //update the record
+            AllStaff.Update();
+            //Find the record
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            //Test to see if ThisStaff matches TestData
+            Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+
+        }
 
 } 
