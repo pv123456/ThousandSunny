@@ -64,6 +64,70 @@ namespace Testing1
             Assert.AreEqual(AllCustomers.Count, TestList.Count);
         }
 
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+            TestItem.CustId = 15;
+            TestItem.CustUsername = "JohnBale";
+            TestItem.CustPassword = "baleofhay1";
+            TestItem.CustEmail = "johnbale1@gmail.com";
+            TestItem.CustDOB = DateTime.Now.Date;
+            TestItem.Over18 = true;
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustId = PrimaryKey;
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+        }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+            TestItem.CustUsername = "Test";
+            TestItem.CustPassword = "TestTest";
+            TestItem.CustEmail = "testemail@gmail.com";
+            TestItem.CustDOB = DateTime.Now.Date;
+            TestItem.Over18 = false;
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustId = PrimaryKey;
+            TestItem.CustUsername = "NotTest";
+            TestItem.CustPassword = "NotTestTest";
+            TestItem.CustEmail = "nottest@gmail.com";
+            TestItem.CustDOB = DateTime.Now.Date;
+            TestItem.Over18 = true;
+            AllCustomers.ThisCustomer = TestItem;
+            AllCustomers.Update();
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+        }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+            TestItem.CustId = 1;
+            TestItem.CustUsername = "Test";
+            TestItem.CustPassword = "TestTest";
+            TestItem.CustEmail = "testemail@gmail.com";
+            TestItem.CustDOB = DateTime.Now.Date;
+            TestItem.Over18 = false;
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustId = PrimaryKey;
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            AllCustomers.Delete();
+            Boolean Found = AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
 
 
     }

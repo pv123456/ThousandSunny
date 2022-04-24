@@ -6,6 +6,7 @@ namespace ClassLibrary
     public class clsCustomerCollection
     {
         List<clsCustomer> mCustomerList = new List<clsCustomer>();
+        clsCustomer mThisCustomer = new clsCustomer();
 
         public List<clsCustomer> CustomerList 
         { 
@@ -31,7 +32,17 @@ namespace ClassLibrary
         }
 
 
-        public clsCustomer ThisCustomer { get; set; }
+        public clsCustomer ThisCustomer
+        { 
+            get
+            {
+                return mThisCustomer;
+            }
+            set
+            {
+                mThisCustomer = value;
+            }
+        }
 
         public clsCustomerCollection()
         {
@@ -53,6 +64,36 @@ namespace ClassLibrary
                 Index++;
             }
 
+        }
+
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustUsername", mThisCustomer.CustUsername);
+            DB.AddParameter("@CustPassword", mThisCustomer.CustPassword);
+            DB.AddParameter("@CustEmail", mThisCustomer.CustEmail);
+            DB.AddParameter("@custDOB", mThisCustomer.CustDOB);
+            DB.AddParameter("@Over18", mThisCustomer.Over18);
+            return DB.Execute("sproc_tblCustomerManagement_Insert");
+        }
+
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustID", mThisCustomer.CustId);
+            DB.AddParameter("@CustUsername", mThisCustomer.CustUsername);
+            DB.AddParameter("@CustPassword", mThisCustomer.CustPassword);
+            DB.AddParameter("@CustEmail", mThisCustomer.CustEmail);
+            DB.AddParameter("@CustDOB", mThisCustomer.CustDOB);
+            DB.AddParameter("@Over18", mThisCustomer.Over18);
+            DB.Execute("sproc_tblCustomerManagement_Update");
+        }
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustID", mThisCustomer.CustId);
+            DB.Execute("sproc_tblCustomerManagement_Delete");
         }
     }
 }
