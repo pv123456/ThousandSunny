@@ -30,4 +30,40 @@ public partial class _1_List : System.Web.UI.Page
     {
 
     }
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        Session["CustId"] = -1;
+        Response.Redirect("CustomerDataEntry.aspx");
+    }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        Int32 CustId;
+        if(lstCustomerList.SelectedIndex != -1)
+        {
+            CustId = Convert.ToInt32(lstCustomerList.SelectedValue);
+            Session["CustID"] = CustId;
+            Response.Redirect("CustomerDataEntry.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record to edit from the list";
+        }
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        Int32 CustId;
+        if (lstCustomerList.SelectedIndex != -1)
+        {
+            CustId = Convert.ToInt32(lstCustomerList.SelectedValue);
+            Session["CustID"] = CustId;
+            Response.Redirect("CustomerConfirmDelete.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record to delete from the list";
+        }
+    }
 }

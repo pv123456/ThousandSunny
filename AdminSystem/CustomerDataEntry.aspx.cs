@@ -8,8 +8,29 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 CustId;
     protected void Page_Load(object sender, EventArgs e)
     {
+        CustId = Convert.ToInt32(Session["CustID"]);
+        if(IsPostBack == false)
+        {
+            if (CustId != -1)
+            {
+                DisplayCustomers();
+            }
+        }
+    }
+
+    void DisplayCustomers()
+    {
+        clsCustomerCollection Customer = new clsCustomerCollection();
+        Customer.ThisCustomer.Find(CustId);
+        txtCustId.Text = Customer.ThisCustomer.CustId.ToString();
+        txtCustUsername.Text = Customer.ThisCustomer.CustUsername.ToString();
+        txtCustPassword.Text = Customer.ThisCustomer.CustPassword.ToString();
+        txtCustEmail.Text = Customer.ThisCustomer.CustEmail.ToString();
+        txtCustDOB.Text = Customer.ThisCustomer.CustDOB.ToString();
+        chkOver18.Checked = Customer.ThisCustomer.Over18;
 
     }
 
@@ -36,12 +57,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = ACustomer.Valid(CustUsername, CustPassword, CustEmail, CustDOB);
         if(Error == "")
         {
+            ACustomer.CustId = CustId;
             ACustomer.CustUsername = CustUsername;
             ACustomer.CustPassword = CustPassword;
             ACustomer.CustEmail = CustEmail;
             ACustomer.CustDOB = Convert.ToDateTime(CustDOB);
-            Session["ACustomer"] = ACustomer;
-            Response.Write("CustomerViewer.aspx");
+            ACustomer.Over18 = chkOver18.Checked;
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+            if (CustId == -1)
+            {
+                CustomerList.ThisCustomer = ACustomer;
+                CustomerList.Add();
+            }
+            else
+            {
+                CustomerList.ThisCustomer.Find(CustId);
+                CustomerList.ThisCustomer = ACustomer;
+                CustomerList.Update();
+            }
+            Response.Redirect("CustomerList.aspx");
         }
         else
         {
