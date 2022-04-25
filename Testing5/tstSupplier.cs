@@ -283,7 +283,7 @@ namespace Testing5
         }
 
         [TestMethod]
-        public void SupplierNamePlusOne()
+        public void SupplierNameminPlusOne()
         {
             //create an instance of the class we want to create
             clsSupplier AnSupplier = new clsSupplier();
@@ -343,6 +343,21 @@ namespace Testing5
             Error = AnSupplier.Valid(SupplierName, SupplierEmail, SupplierAddress, StartDateSupplier);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void SupplierNameMaxPlusOne()
+        { 
+       //create an instance of the class we want to create
+            clsSupplier AnSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string SupplierName = "";
+            SupplierName = SupplierName.PadRight(51, 'a');
+            //invoke the method
+            Error = AnSupplier.Valid(SupplierName, SupplierEmail, SupplierAddress, StartDateSupplier);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void SupplierNameExtremeMax()
