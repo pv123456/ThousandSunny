@@ -18,6 +18,15 @@
         <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" style="height: 26px" Text="Delete" />
         <br />
         <br />
+        Enter an email:
+        <asp:TextBox ID="txtFilter" runat="server"></asp:TextBox>
+        <br />
+        <br />
+        <asp:Button ID="btnApply" runat="server" OnClick="btnApply_Click" Text="Apply" />
+&nbsp;&nbsp;
+        <asp:Button ID="btnClear" runat="server" OnClick="btnClear_Click" Text="Clear" />
+        <br />
+        <br />
         <asp:Label ID="lblError" runat="server"></asp:Label>
     </form>
 </body>
