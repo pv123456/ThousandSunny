@@ -46,23 +46,9 @@ namespace ClassLibrary
 
         public clsCustomerCollection()
         {
-            Int32 Index = 0;
-            Int32 RecordCount = 0;
             clsDataConnection DB = new clsDataConnection();
             DB.Execute("sproc_tblCustomerManagement_SelectAll");
-            RecordCount = DB.Count;
-            while(Index<RecordCount)
-            {
-                clsCustomer ACustomer = new clsCustomer();
-                ACustomer.CustId = Convert.ToInt32(DB.DataTable.Rows[Index]["CustID"]);
-                ACustomer.CustUsername = Convert.ToString(DB.DataTable.Rows[Index]["CustUsername"]);
-                ACustomer.CustPassword = Convert.ToString(DB.DataTable.Rows[Index]["CustPassword"]);
-                ACustomer.CustEmail = Convert.ToString(DB.DataTable.Rows[Index]["CustEmail"]);
-                ACustomer.CustDOB = Convert.ToDateTime(DB.DataTable.Rows[Index]["CustDOB"]);
-                ACustomer.Over18 = Convert.ToBoolean(DB.DataTable.Rows[Index]["Over18"]);
-                mCustomerList.Add(ACustomer);
-                Index++;
-            }
+            PopulateArray(DB);
 
         }
 
@@ -95,5 +81,35 @@ namespace ClassLibrary
             DB.AddParameter("@CustID", mThisCustomer.CustId);
             DB.Execute("sproc_tblCustomerManagement_Delete");
         }
+
+        public void ReportByEmail(string CustEmail)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustEmail", CustEmail);
+            DB.Execute("sproc_tblCustomerManagement_FilterByEmail");
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+            Int32 RecordCount;
+            RecordCount = DB.Count;
+            mCustomerList = new List<clsCustomer>();
+            while (Index < RecordCount)
+            {
+                clsCustomer ACustomer = new clsCustomer();
+                ACustomer.CustId = Convert.ToInt32(DB.DataTable.Rows[Index]["CustID"]);
+                ACustomer.CustUsername = Convert.ToString(DB.DataTable.Rows[Index]["CustUsername"]);
+                ACustomer.CustPassword = Convert.ToString(DB.DataTable.Rows[Index]["CustPassword"]);
+                ACustomer.CustEmail = Convert.ToString(DB.DataTable.Rows[Index]["CustEmail"]);
+                ACustomer.CustDOB = Convert.ToDateTime(DB.DataTable.Rows[Index]["CustDOB"]);
+                ACustomer.Over18 = Convert.ToBoolean(DB.DataTable.Rows[Index]["Over18"]);
+                mCustomerList.Add(ACustomer);
+                Index++;
+            }
+        }
+
+
     }
 }

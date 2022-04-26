@@ -129,6 +129,45 @@ namespace Testing1
             Assert.IsFalse(Found);
         }
 
+        [TestMethod]
+        public void ReportByEmailMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            FilteredCustomers.ReportByEmail("");
+            Assert.AreEqual(AllCustomers.Count, FilteredCustomers.Count);
+        }
 
+        [TestMethod]
+        public void ReportByEmailNoneFound()
+        {
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            FilteredCustomers.ReportByEmail("xxxxxxxxxxx@xxxxxxxx.xxxx");
+            Assert.AreEqual(0, FilteredCustomers.Count);
+        }
+
+        [TestMethod]
+        public void ReportByEmailTestDataFound()
+        {
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            Boolean OK = true;
+            FilteredCustomers.ReportByEmail("yyy@yyyyy.yyy");
+            if (FilteredCustomers.Count == 2)
+            {
+                if(FilteredCustomers.CustomerList[0].CustId != 25)
+                {
+                    OK = false;
+                }
+                if (FilteredCustomers.CustomerList[1].CustId != 26)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
     }
 }
