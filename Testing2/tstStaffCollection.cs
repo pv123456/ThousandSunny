@@ -183,9 +183,60 @@ namespace Testing2
             TestItem.StaffId = PrimaryKey;
             AllStaff.Delete();
             //Find the record
-           Boolean Found = AllStaff.ThisStaff.Find(PrimaryKey);
+            Boolean Found = AllStaff.ThisStaff.Find(PrimaryKey);
             //Test to see that the two variables are the same
             Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void ReportByNameMethodOK()
+        {
+            //create an instance of the class containing unfiltered results
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            //create an instance of filtered data
+            clsStaffCollection FilteredNames = new clsStaffCollection();
+            //apply a blenk screen(should return all records)
+            FilteredNames.ReportByName("");
+            //test to see the two values are the same
+            Assert.AreEqual(AllStaff.Count, FilteredNames.Count);
+        }
+
+        [TestMethod]
+        public void ReportByNameNoneFound()
+        {
+            clsStaffCollection FilteredNames = new clsStaffCollection();
+            FilteredNames.ReportByName("yyy");
+            Assert.AreEqual(0, FilteredNames.Count);
+        }
+
+        [TestMethod]
+        public void ReportByNameTestDataFound()
+        {
+            //create an instance of filtered data
+            clsStaffCollection FilteredNames = new clsStaffCollection();
+            //var to store outcome
+            Boolean OK = true;
+            //apply a name that exists
+            FilteredNames.ReportByName("xxx xxx");
+            //check the correct number of records are found
+            if(FilteredNames.Count == 2)
+            {
+                //check that the first record has ID 9
+                if (FilteredNames.StaffList[0].StaffId != 9)
+                {
+                    OK = false;
+                }
+                //check that the second record has ID 10
+                if (FilteredNames.StaffList[1].StaffId != 10)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
         }
     }
 
