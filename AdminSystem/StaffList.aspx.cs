@@ -84,4 +84,38 @@ public partial class _1_List : System.Web.UI.Page
         }
 
     }
+
+
+
+
+
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        //create an instance of the staff collection
+        clsStaffCollection Staff = new clsStaffCollection();
+        //clear any existing filter
+        Staff.ReportByName("");
+        lstStaffList.DataSource = Staff.StaffList;
+        //set name of private key
+        lstStaffList.DataValueField = "StaffId";
+        //set name of feild to display
+        lstStaffList.DataTextField = "StaffFullName";
+        //bind the data to the list
+        lstStaffList.DataBind();
+    }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        //create an instance of the staff collection
+        clsStaffCollection Staff = new clsStaffCollection();
+        Staff.ReportByName(txtFilter.Text);
+        lstStaffList.DataSource = Staff.StaffList;
+        //set name of private key
+        lstStaffList.DataValueField = "StaffId";
+        //set name of feild to display
+        lstStaffList.DataTextField = "StaffFullName";
+        //bind the data to the list
+        lstStaffList.DataBind();
+    }
 }
